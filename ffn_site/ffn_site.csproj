@@ -155,15 +155,76 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FFNModel.Context.cs">
+    <Compile Include="Models\Ballet.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategorieBallet.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategorieCompetition.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategorieEpreuve.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategorieEvaluation.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategorieTour.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Club.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Coefficient.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Competition.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Epreuve.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipe.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Evaluation.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EvaluationCompilee.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FFNModel.Context.cs" />
+    <Compile Include="Models\FFNModel.Context1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FFNModel.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FFNModel.cs" />
     <Compile Include="Models\FFNModel.Designer.cs">
+      <DependentUpon>FFNModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FFNModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FFNModel1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FFNModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Juge.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Nageur.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Profil.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tour.cs">
+      <DependentUpon>FFNModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -180,7 +241,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\FFNModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FFNModel.Context.cs</LastGenOutput>
+      <LastGenOutput>FFNModel.Context1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FFNModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FFNModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\SQL\constraint.sql" />
     <Content Include="Resources\SQL\drop.sql" />
@@ -194,11 +259,11 @@
     </Content>
     <EntityDeploy Include="Models\FFNModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FFNModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FFNModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\FFNModel.edmx.diagram">
+    <Content Include="Models\FFNModel.edmx.diagram">
       <DependentUpon>FFNModel.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
