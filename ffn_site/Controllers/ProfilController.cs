@@ -6,12 +6,17 @@ using System.Web.Mvc;
 
 namespace ffn_site.Controllers
 {
-    public class HomeController : Controller
+    public class ProfilController : Controller
     {
-        public ActionResult Index()
+        // GET: Profil
+        public ActionResult Connexion()
         {
             return View();
         }
 
+        public ActionResult Inscription()
+        {
+            return View();
+        }
     }
 }
