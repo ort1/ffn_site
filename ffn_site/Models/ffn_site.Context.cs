@@ -13,10 +13,10 @@ namespace ffn_site.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class ffn_siteEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public ffn_siteEntities()
+            : base("name=ffn_siteEntities")
         {
         }
     

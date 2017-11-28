@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ffn_siteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ffn_siteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ballet">
           <Key>
             <PropertyRef Name="id" />
@@ -18,49 +18,49 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lbl" Type="text" />
+          <Property Name="lbl" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CategorieCompetition">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lbl" Type="text" />
+          <Property Name="lbl" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CategorieEpreuve">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lbl" Type="text" />
+          <Property Name="lbl" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CategorieEvaluation">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lbl" Type="text" />
+          <Property Name="lbl" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CategorieTour">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lbl" Type="text" />
+          <Property Name="lbl" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Club">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nomClub" Type="text" />
-          <Property Name="villeSiege" Type="text" />
-          <Property Name="CPSiege" Type="text" />
-          <Property Name="rueSiege" Type="text" />
-          <Property Name="nomDirigeant" Type="text" />
-          <Property Name="prenomDirigeant" Type="text" />
-          <Property Name="telDirigeant" Type="text" />
-          <Property Name="mailDirigeant" Type="text" />
+          <Property Name="nomClub" Type="varchar(max)" />
+          <Property Name="villeSiege" Type="varchar(max)" />
+          <Property Name="CPSiege" Type="varchar(max)" />
+          <Property Name="rueSiege" Type="varchar(max)" />
+          <Property Name="nomDirigeant" Type="varchar(max)" />
+          <Property Name="prenomDirigeant" Type="varchar(max)" />
+          <Property Name="telDirigeant" Type="varchar(max)" />
+          <Property Name="mailDirigeant" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Coefficient">
           <Key>
@@ -78,10 +78,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="titre" Type="text" />
+          <Property Name="titre" Type="varchar(max)" />
           <Property Name="dateDebut" Type="date" />
-          <Property Name="lieuVille" Type="text" />
-          <Property Name="lieuCP" Type="text" />
+          <Property Name="lieuVille" Type="varchar(max)" />
+          <Property Name="lieuCP" Type="varchar(max)" />
           <Property Name="id_CategorieCompetition" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Epreuve">
@@ -127,8 +127,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom" Type="text" />
-          <Property Name="prenom" Type="text" />
+          <Property Name="nom" Type="varchar(max)" />
+          <Property Name="prenom" Type="varchar(max)" />
           <Property Name="rang" Type="int" />
           <Property Name="estArbitre" Type="bit" />
           <Property Name="id_Profil" Type="int" Nullable="false" />
@@ -146,11 +146,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom" Type="text" />
-          <Property Name="prenom" Type="text" />
+          <Property Name="nom" Type="varchar(max)" />
+          <Property Name="prenom" Type="varchar(max)" />
           <Property Name="anneeNaissance" Type="int" />
-          <Property Name="statut" Type="text" />
-          <Property Name="forfait" Type="text" />
+          <Property Name="statut" Type="varchar(max)" />
+          <Property Name="forfait" Type="varchar(max)" />
           <Property Name="id_Club" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Profil">
@@ -158,9 +158,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="login" Type="text" />
-          <Property Name="password" Type="text" />
-          <Property Name="mail" Type="text" />
+          <Property Name="login" Type="varchar(max)" />
+          <Property Name="password" Type="varchar(max)" />
+          <Property Name="mail" Type="varchar(max)" />
           <Property Name="dateCreation" Type="date" />
           <Property Name="dateConnexion" Type="date" />
           <Property Name="estAdmin" Type="bit" />
@@ -530,8 +530,7 @@
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ffn_siteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

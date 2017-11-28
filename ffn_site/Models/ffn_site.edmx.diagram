@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="31fdd6ba9ce14c1db43355a496325e12" Name="Diagram1">
+      <Diagram DiagramId="3ec43124e0d843d385b7318d84cc6761" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="ffn_siteModel.Ballet" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ffn_siteModel.CategorieBallet" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ffn_siteModel.CategorieCompetition" Width="1.5" PointX="1.5" PointY="19.125" IsExpanded="true" />

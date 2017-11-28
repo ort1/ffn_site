@@ -156,77 +156,75 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Ballet.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorieBallet.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorieCompetition.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorieEpreuve.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorieEvaluation.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorieTour.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Club.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Coefficient.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Competition.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dal\IDal.cs" />
+    <Compile Include="Models\Dal\ProfilDal.cs" />
     <Compile Include="Models\Epreuve.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipe.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Evaluation.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EvaluationCompilee.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FFNModel.Context.cs" />
-    <Compile Include="Models\FFNModel.Context1.cs">
+    <Compile Include="Models\ffn_site.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FFNModel.Context.tt</DependentUpon>
+      <DependentUpon>ffn_site.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FFNModel.cs" />
-    <Compile Include="Models\FFNModel.Designer.cs">
-      <DependentUpon>FFNModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FFNModel1.cs">
+    <Compile Include="Models\ffn_site.Designer.cs">
+      <DependentUpon>ffn_site.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FFNModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FFNModel1.Designer.cs">
+    <Compile Include="Models\ffn_site.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FFNModel.edmx</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Juge.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Nageur.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profil.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tour.cs">
-      <DependentUpon>FFNModel.tt</DependentUpon>
+      <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ffn_site.mdf" />
@@ -239,13 +237,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\FFNModel.Context.tt">
+    <Content Include="Models\ffn_site.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FFNModel.Context1.cs</LastGenOutput>
+      <DependentUpon>ffn_site.edmx</DependentUpon>
+      <LastGenOutput>ffn_site.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\FFNModel.tt">
+    <Content Include="Models\ffn_site.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FFNModel1.cs</LastGenOutput>
+      <DependentUpon>ffn_site.edmx</DependentUpon>
+      <LastGenOutput>ffn_site.cs</LastGenOutput>
     </Content>
     <Content Include="Resources\SQL\constraint.sql" />
     <Content Include="Resources\SQL\drop.sql" />
@@ -257,12 +257,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\FFNModel.edmx">
+    <EntityDeploy Include="Models\ffn_site.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FFNModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ffn_site.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\FFNModel.edmx.diagram">
-      <DependentUpon>FFNModel.edmx</DependentUpon>
+    <Content Include="Models\ffn_site.edmx.diagram">
+      <DependentUpon>ffn_site.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
