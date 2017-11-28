@@ -1,0 +1,1279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ffn_siteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ballet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_CategorieBallet" Type="int" Nullable="false" />
+          <Property Name="id_Epreuve" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategorieBallet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lbl" Type="text" />
+        </EntityType>
+        <EntityType Name="CategorieCompetition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lbl" Type="text" />
+        </EntityType>
+        <EntityType Name="CategorieEpreuve">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lbl" Type="text" />
+        </EntityType>
+        <EntityType Name="CategorieEvaluation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lbl" Type="text" />
+        </EntityType>
+        <EntityType Name="CategorieTour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lbl" Type="text" />
+        </EntityType>
+        <EntityType Name="Club">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomClub" Type="text" />
+          <Property Name="villeSiege" Type="text" />
+          <Property Name="CPSiege" Type="text" />
+          <Property Name="rueSiege" Type="text" />
+          <Property Name="nomDirigeant" Type="text" />
+          <Property Name="prenomDirigeant" Type="text" />
+          <Property Name="telDirigeant" Type="text" />
+          <Property Name="mailDirigeant" Type="text" />
+        </EntityType>
+        <EntityType Name="Coefficient">
+          <Key>
+            <PropertyRef Name="id_CategorieEvaluation" />
+            <PropertyRef Name="id_CategorieEpreuve" />
+            <PropertyRef Name="id_CategorieBallet" />
+          </Key>
+          <Property Name="coef" Type="float" />
+          <Property Name="id_CategorieEvaluation" Type="int" Nullable="false" />
+          <Property Name="id_CategorieEpreuve" Type="int" Nullable="false" />
+          <Property Name="id_CategorieBallet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Competition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titre" Type="text" />
+          <Property Name="dateDebut" Type="date" />
+          <Property Name="lieuVille" Type="text" />
+          <Property Name="lieuCP" Type="text" />
+          <Property Name="id_CategorieCompetition" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Epreuve">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Tour" Type="int" Nullable="false" />
+          <Property Name="id_CategorieEpreuve" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipe">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_Nageur" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_Epreuve" Type="int" Nullable="false" />
+          <Property Name="id_Nageur" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Evaluation">
+          <Key>
+            <PropertyRef Name="id_CategorieEvaluation" />
+            <PropertyRef Name="id_Ballet" />
+            <PropertyRef Name="id_Juge" />
+          </Key>
+          <Property Name="note" Type="float" />
+          <Property Name="id_CategorieEvaluation" Type="int" Nullable="false" />
+          <Property Name="id_Ballet" Type="int" Nullable="false" />
+          <Property Name="id_Juge" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EvaluationCompilee">
+          <Key>
+            <PropertyRef Name="id_Ballet" />
+            <PropertyRef Name="id_Juge" />
+          </Key>
+          <Property Name="noteCompilee" Type="float" />
+          <Property Name="penalite" Type="float" />
+          <Property Name="id_Ballet" Type="int" Nullable="false" />
+          <Property Name="id_Juge" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Juge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="text" />
+          <Property Name="prenom" Type="text" />
+          <Property Name="rang" Type="int" />
+          <Property Name="estArbitre" Type="bit" />
+          <Property Name="id_Profil" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JugeDEpreuve">
+          <Key>
+            <PropertyRef Name="id_Juge" />
+            <PropertyRef Name="id_Epreuve" />
+          </Key>
+          <Property Name="id_Juge" Type="int" Nullable="false" />
+          <Property Name="id_Epreuve" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nageur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="text" />
+          <Property Name="prenom" Type="text" />
+          <Property Name="anneeNaissance" Type="int" />
+          <Property Name="statut" Type="text" />
+          <Property Name="forfait" Type="text" />
+          <Property Name="id_Club" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="text" />
+          <Property Name="password" Type="text" />
+          <Property Name="mail" Type="text" />
+          <Property Name="dateCreation" Type="date" />
+          <Property Name="dateConnexion" Type="date" />
+          <Property Name="estAdmin" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nbEquipe" Type="int" />
+          <Property Name="id_Competition" Type="int" Nullable="false" />
+          <Property Name="id_CategorieTour" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ballet_id_CategorieBallet">
+          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="1" />
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieBallet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ballet">
+              <PropertyRef Name="id_CategorieBallet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ballet_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ballet">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coefficient_id_CategorieBallet">
+          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="1" />
+          <End Role="Coefficient" Type="Self.Coefficient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieBallet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Coefficient">
+              <PropertyRef Name="id_CategorieBallet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coefficient_id_CategorieEpreuve">
+          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="1" />
+          <End Role="Coefficient" Type="Self.Coefficient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEpreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Coefficient">
+              <PropertyRef Name="id_CategorieEpreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coefficient_id_CategorieEvaluation">
+          <End Role="CategorieEvaluation" Type="Self.CategorieEvaluation" Multiplicity="1" />
+          <End Role="Coefficient" Type="Self.Coefficient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEvaluation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Coefficient">
+              <PropertyRef Name="id_CategorieEvaluation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Competition_id_CategorieCompetition">
+          <End Role="CategorieCompetition" Type="Self.CategorieCompetition" Multiplicity="1" />
+          <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieCompetition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Competition">
+              <PropertyRef Name="id_CategorieCompetition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Epreuve_id_CategorieEpreuve">
+          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="1" />
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEpreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Epreuve">
+              <PropertyRef Name="id_CategorieEpreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Epreuve_id_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Epreuve">
+              <PropertyRef Name="id_Tour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipe_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipe_id_Nageur">
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="1" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nageur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="id_Nageur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_id_Ballet">
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_Ballet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_id_CategorieEvaluation">
+          <End Role="CategorieEvaluation" Type="Self.CategorieEvaluation" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEvaluation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_CategorieEvaluation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationCompilee_id_Ballet">
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="1" />
+          <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluationCompilee">
+              <PropertyRef Name="id_Ballet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationCompilee_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluationCompilee">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JgeDEpreuve_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="JugeDEpreuve" Type="Self.JugeDEpreuve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JugeDEpreuve">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JgeDEpreuve_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="JugeDEpreuve" Type="Self.JugeDEpreuve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JugeDEpreuve">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Juge_id_Profil">
+          <End Role="Profil" Type="Self.Profil" Multiplicity="1" />
+          <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Juge">
+              <PropertyRef Name="id_Profil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nageur_id_Club">
+          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nageur">
+              <PropertyRef Name="id_Club" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_id_CategorieTour">
+          <End Role="CategorieTour" Type="Self.CategorieTour" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieTour">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="id_CategorieTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_id_Competition">
+          <End Role="Competition" Type="Self.Competition" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="id_Competition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ffn_siteModelStoreContainer">
+          <EntitySet Name="Ballet" EntityType="Self.Ballet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategorieBallet" EntityType="Self.CategorieBallet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategorieCompetition" EntityType="Self.CategorieCompetition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategorieEpreuve" EntityType="Self.CategorieEpreuve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategorieEvaluation" EntityType="Self.CategorieEvaluation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategorieTour" EntityType="Self.CategorieTour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Club" EntityType="Self.Club" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coefficient" EntityType="Self.Coefficient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Competition" EntityType="Self.Competition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Epreuve" EntityType="Self.Epreuve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipe" EntityType="Self.Equipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evaluation" EntityType="Self.Evaluation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EvaluationCompilee" EntityType="Self.EvaluationCompilee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Juge" EntityType="Self.Juge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JugeDEpreuve" EntityType="Self.JugeDEpreuve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nageur" EntityType="Self.Nageur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profil" EntityType="Self.Profil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ballet_id_CategorieBallet" Association="Self.FK_Ballet_id_CategorieBallet">
+            <End Role="CategorieBallet" EntitySet="CategorieBallet" />
+            <End Role="Ballet" EntitySet="Ballet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ballet_id_Epreuve" Association="Self.FK_Ballet_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Ballet" EntitySet="Ballet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coefficient_id_CategorieBallet" Association="Self.FK_Coefficient_id_CategorieBallet">
+            <End Role="CategorieBallet" EntitySet="CategorieBallet" />
+            <End Role="Coefficient" EntitySet="Coefficient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coefficient_id_CategorieEpreuve" Association="Self.FK_Coefficient_id_CategorieEpreuve">
+            <End Role="CategorieEpreuve" EntitySet="CategorieEpreuve" />
+            <End Role="Coefficient" EntitySet="Coefficient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coefficient_id_CategorieEvaluation" Association="Self.FK_Coefficient_id_CategorieEvaluation">
+            <End Role="CategorieEvaluation" EntitySet="CategorieEvaluation" />
+            <End Role="Coefficient" EntitySet="Coefficient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competition_id_CategorieCompetition" Association="Self.FK_Competition_id_CategorieCompetition">
+            <End Role="CategorieCompetition" EntitySet="CategorieCompetition" />
+            <End Role="Competition" EntitySet="Competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Epreuve_id_CategorieEpreuve" Association="Self.FK_Epreuve_id_CategorieEpreuve">
+            <End Role="CategorieEpreuve" EntitySet="CategorieEpreuve" />
+            <End Role="Epreuve" EntitySet="Epreuve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Epreuve_id_Tour" Association="Self.FK_Epreuve_id_Tour">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Epreuve" EntitySet="Epreuve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipe_id_Epreuve" Association="Self.FK_Equipe_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipe_id_Nageur" Association="Self.FK_Equipe_id_Nageur">
+            <End Role="Nageur" EntitySet="Nageur" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_Ballet" Association="Self.FK_Evaluation_id_Ballet">
+            <End Role="Ballet" EntitySet="Ballet" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_CategorieEvaluation" Association="Self.FK_Evaluation_id_CategorieEvaluation">
+            <End Role="CategorieEvaluation" EntitySet="CategorieEvaluation" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_Juge" Association="Self.FK_Evaluation_id_Juge">
+            <End Role="Juge" EntitySet="Juge" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationCompilee_id_Ballet" Association="Self.FK_EvaluationCompilee_id_Ballet">
+            <End Role="Ballet" EntitySet="Ballet" />
+            <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationCompilee_id_Juge" Association="Self.FK_EvaluationCompilee_id_Juge">
+            <End Role="Juge" EntitySet="Juge" />
+            <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JgeDEpreuve_id_Epreuve" Association="Self.FK_JgeDEpreuve_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="JugeDEpreuve" EntitySet="JugeDEpreuve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JgeDEpreuve_id_Juge" Association="Self.FK_JgeDEpreuve_id_Juge">
+            <End Role="Juge" EntitySet="Juge" />
+            <End Role="JugeDEpreuve" EntitySet="JugeDEpreuve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Juge_id_Profil" Association="Self.FK_Juge_id_Profil">
+            <End Role="Profil" EntitySet="Profil" />
+            <End Role="Juge" EntitySet="Juge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nageur_id_Club" Association="Self.FK_Nageur_id_Club">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Nageur" EntitySet="Nageur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_id_CategorieTour" Association="Self.FK_Tour_id_CategorieTour">
+            <End Role="CategorieTour" EntitySet="CategorieTour" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_id_Competition" Association="Self.FK_Tour_id_Competition">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ffn_siteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ballet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_CategorieBallet" Type="Int32" Nullable="false" />
+          <Property Name="id_Epreuve" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategorieBallet" Relationship="Self.FK_Ballet_id_CategorieBallet" FromRole="Ballet" ToRole="CategorieBallet" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.FK_Ballet_id_Epreuve" FromRole="Ballet" ToRole="Epreuve" />
+          <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_Ballet" FromRole="Ballet" ToRole="Evaluation" />
+          <NavigationProperty Name="EvaluationCompilee" Relationship="Self.FK_EvaluationCompilee_id_Ballet" FromRole="Ballet" ToRole="EvaluationCompilee" />
+        </EntityType>
+        <EntityType Name="CategorieBallet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lbl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ballet" Relationship="Self.FK_Ballet_id_CategorieBallet" FromRole="CategorieBallet" ToRole="Ballet" />
+          <NavigationProperty Name="Coefficient" Relationship="Self.FK_Coefficient_id_CategorieBallet" FromRole="CategorieBallet" ToRole="Coefficient" />
+        </EntityType>
+        <EntityType Name="CategorieCompetition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lbl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Competition" Relationship="Self.FK_Competition_id_CategorieCompetition" FromRole="CategorieCompetition" ToRole="Competition" />
+        </EntityType>
+        <EntityType Name="CategorieEpreuve">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lbl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coefficient" Relationship="Self.FK_Coefficient_id_CategorieEpreuve" FromRole="CategorieEpreuve" ToRole="Coefficient" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.FK_Epreuve_id_CategorieEpreuve" FromRole="CategorieEpreuve" ToRole="Epreuve" />
+        </EntityType>
+        <EntityType Name="CategorieEvaluation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lbl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coefficient" Relationship="Self.FK_Coefficient_id_CategorieEvaluation" FromRole="CategorieEvaluation" ToRole="Coefficient" />
+          <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_CategorieEvaluation" FromRole="CategorieEvaluation" ToRole="Evaluation" />
+        </EntityType>
+        <EntityType Name="CategorieTour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lbl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_id_CategorieTour" FromRole="CategorieTour" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="Club">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomClub" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="villeSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CPSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rueSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nomDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prenomDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mailDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Nageur" Relationship="Self.FK_Nageur_id_Club" FromRole="Club" ToRole="Nageur" />
+        </EntityType>
+        <EntityType Name="Coefficient">
+          <Key>
+            <PropertyRef Name="id_CategorieEvaluation" />
+            <PropertyRef Name="id_CategorieEpreuve" />
+            <PropertyRef Name="id_CategorieBallet" />
+          </Key>
+          <Property Name="coef" Type="Double" />
+          <Property Name="id_CategorieEvaluation" Type="Int32" Nullable="false" />
+          <Property Name="id_CategorieEpreuve" Type="Int32" Nullable="false" />
+          <Property Name="id_CategorieBallet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategorieBallet" Relationship="Self.FK_Coefficient_id_CategorieBallet" FromRole="Coefficient" ToRole="CategorieBallet" />
+          <NavigationProperty Name="CategorieEpreuve" Relationship="Self.FK_Coefficient_id_CategorieEpreuve" FromRole="Coefficient" ToRole="CategorieEpreuve" />
+          <NavigationProperty Name="CategorieEvaluation" Relationship="Self.FK_Coefficient_id_CategorieEvaluation" FromRole="Coefficient" ToRole="CategorieEvaluation" />
+        </EntityType>
+        <EntityType Name="Competition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateDebut" Type="DateTime" Precision="0" />
+          <Property Name="lieuVille" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lieuCP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_CategorieCompetition" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategorieCompetition" Relationship="Self.FK_Competition_id_CategorieCompetition" FromRole="Competition" ToRole="CategorieCompetition" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_id_Competition" FromRole="Competition" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="Epreuve">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Tour" Type="Int32" Nullable="false" />
+          <Property Name="id_CategorieEpreuve" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ballet" Relationship="Self.FK_Ballet_id_Epreuve" FromRole="Epreuve" ToRole="Ballet" />
+          <NavigationProperty Name="CategorieEpreuve" Relationship="Self.FK_Epreuve_id_CategorieEpreuve" FromRole="Epreuve" ToRole="CategorieEpreuve" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Epreuve_id_Tour" FromRole="Epreuve" ToRole="Tour" />
+          <NavigationProperty Name="Equipe" Relationship="Self.FK_Equipe_id_Epreuve" FromRole="Epreuve" ToRole="Equipe" />
+          <NavigationProperty Name="Juge" Relationship="Self.JugeDEpreuve" FromRole="Epreuve" ToRole="Juge" />
+        </EntityType>
+        <EntityType Name="Equipe">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_Nageur" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_Epreuve" Type="Int32" Nullable="false" />
+          <Property Name="id_Nageur" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.FK_Equipe_id_Epreuve" FromRole="Equipe" ToRole="Epreuve" />
+          <NavigationProperty Name="Nageur" Relationship="Self.FK_Equipe_id_Nageur" FromRole="Equipe" ToRole="Nageur" />
+        </EntityType>
+        <EntityType Name="Evaluation">
+          <Key>
+            <PropertyRef Name="id_CategorieEvaluation" />
+            <PropertyRef Name="id_Ballet" />
+            <PropertyRef Name="id_Juge" />
+          </Key>
+          <Property Name="note" Type="Double" />
+          <Property Name="id_CategorieEvaluation" Type="Int32" Nullable="false" />
+          <Property Name="id_Ballet" Type="Int32" Nullable="false" />
+          <Property Name="id_Juge" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ballet" Relationship="Self.FK_Evaluation_id_Ballet" FromRole="Evaluation" ToRole="Ballet" />
+          <NavigationProperty Name="CategorieEvaluation" Relationship="Self.FK_Evaluation_id_CategorieEvaluation" FromRole="Evaluation" ToRole="CategorieEvaluation" />
+          <NavigationProperty Name="Juge" Relationship="Self.FK_Evaluation_id_Juge" FromRole="Evaluation" ToRole="Juge" />
+        </EntityType>
+        <EntityType Name="EvaluationCompilee">
+          <Key>
+            <PropertyRef Name="id_Ballet" />
+            <PropertyRef Name="id_Juge" />
+          </Key>
+          <Property Name="noteCompilee" Type="Double" />
+          <Property Name="penalite" Type="Double" />
+          <Property Name="id_Ballet" Type="Int32" Nullable="false" />
+          <Property Name="id_Juge" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ballet" Relationship="Self.FK_EvaluationCompilee_id_Ballet" FromRole="EvaluationCompilee" ToRole="Ballet" />
+          <NavigationProperty Name="Juge" Relationship="Self.FK_EvaluationCompilee_id_Juge" FromRole="EvaluationCompilee" ToRole="Juge" />
+        </EntityType>
+        <EntityType Name="Juge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rang" Type="Int32" />
+          <Property Name="estArbitre" Type="Boolean" />
+          <Property Name="id_Profil" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_Juge" FromRole="Juge" ToRole="Evaluation" />
+          <NavigationProperty Name="EvaluationCompilee" Relationship="Self.FK_EvaluationCompilee_id_Juge" FromRole="Juge" ToRole="EvaluationCompilee" />
+          <NavigationProperty Name="Profil" Relationship="Self.FK_Juge_id_Profil" FromRole="Juge" ToRole="Profil" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.JugeDEpreuve" FromRole="Juge" ToRole="Epreuve" />
+        </EntityType>
+        <EntityType Name="Nageur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="anneeNaissance" Type="Int32" />
+          <Property Name="statut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="forfait" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_Club" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Club" Relationship="Self.FK_Nageur_id_Club" FromRole="Nageur" ToRole="Club" />
+          <NavigationProperty Name="Equipe" Relationship="Self.FK_Equipe_id_Nageur" FromRole="Nageur" ToRole="Equipe" />
+        </EntityType>
+        <EntityType Name="Profil">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateCreation" Type="DateTime" Precision="0" />
+          <Property Name="dateConnexion" Type="DateTime" Precision="0" />
+          <Property Name="estAdmin" Type="Boolean" />
+          <NavigationProperty Name="Juge" Relationship="Self.FK_Juge_id_Profil" FromRole="Profil" ToRole="Juge" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nbEquipe" Type="Int32" />
+          <Property Name="id_Competition" Type="Int32" Nullable="false" />
+          <Property Name="id_CategorieTour" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategorieTour" Relationship="Self.FK_Tour_id_CategorieTour" FromRole="Tour" ToRole="CategorieTour" />
+          <NavigationProperty Name="Competition" Relationship="Self.FK_Tour_id_Competition" FromRole="Tour" ToRole="Competition" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.FK_Epreuve_id_Tour" FromRole="Tour" ToRole="Epreuve" />
+        </EntityType>
+        <Association Name="FK_Ballet_id_CategorieBallet">
+          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="1" />
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieBallet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ballet">
+              <PropertyRef Name="id_CategorieBallet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ballet_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ballet">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_id_Ballet">
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_Ballet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationCompilee_id_Ballet">
+          <End Role="Ballet" Type="Self.Ballet" Multiplicity="1" />
+          <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ballet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluationCompilee">
+              <PropertyRef Name="id_Ballet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coefficient_id_CategorieBallet">
+          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="1" />
+          <End Role="Coefficient" Type="Self.Coefficient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieBallet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Coefficient">
+              <PropertyRef Name="id_CategorieBallet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Competition_id_CategorieCompetition">
+          <End Role="CategorieCompetition" Type="Self.CategorieCompetition" Multiplicity="1" />
+          <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieCompetition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Competition">
+              <PropertyRef Name="id_CategorieCompetition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coefficient_id_CategorieEpreuve">
+          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="1" />
+          <End Role="Coefficient" Type="Self.Coefficient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEpreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Coefficient">
+              <PropertyRef Name="id_CategorieEpreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Epreuve_id_CategorieEpreuve">
+          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="1" />
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEpreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Epreuve">
+              <PropertyRef Name="id_CategorieEpreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coefficient_id_CategorieEvaluation">
+          <End Role="CategorieEvaluation" Type="Self.CategorieEvaluation" Multiplicity="1" />
+          <End Role="Coefficient" Type="Self.Coefficient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEvaluation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Coefficient">
+              <PropertyRef Name="id_CategorieEvaluation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_id_CategorieEvaluation">
+          <End Role="CategorieEvaluation" Type="Self.CategorieEvaluation" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieEvaluation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_CategorieEvaluation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_id_CategorieTour">
+          <End Role="CategorieTour" Type="Self.CategorieTour" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategorieTour">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="id_CategorieTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nageur_id_Club">
+          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nageur">
+              <PropertyRef Name="id_Club" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_id_Competition">
+          <End Role="Competition" Type="Self.Competition" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competition">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="id_Competition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Epreuve_id_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Epreuve">
+              <PropertyRef Name="id_Tour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipe_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipe_id_Nageur">
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="1" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nageur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="id_Nageur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evaluation_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationCompilee_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluationCompilee">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Juge_id_Profil">
+          <End Role="Profil" Type="Self.Profil" Multiplicity="1" />
+          <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profil">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Juge">
+              <PropertyRef Name="id_Profil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JugeDEpreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
+          <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ballet" EntityType="Self.Ballet" />
+          <EntitySet Name="CategorieBallet" EntityType="Self.CategorieBallet" />
+          <EntitySet Name="CategorieCompetition" EntityType="Self.CategorieCompetition" />
+          <EntitySet Name="CategorieEpreuve" EntityType="Self.CategorieEpreuve" />
+          <EntitySet Name="CategorieEvaluation" EntityType="Self.CategorieEvaluation" />
+          <EntitySet Name="CategorieTour" EntityType="Self.CategorieTour" />
+          <EntitySet Name="Club" EntityType="Self.Club" />
+          <EntitySet Name="Coefficient" EntityType="Self.Coefficient" />
+          <EntitySet Name="Competition" EntityType="Self.Competition" />
+          <EntitySet Name="Epreuve" EntityType="Self.Epreuve" />
+          <EntitySet Name="Equipe" EntityType="Self.Equipe" />
+          <EntitySet Name="Evaluation" EntityType="Self.Evaluation" />
+          <EntitySet Name="EvaluationCompilee" EntityType="Self.EvaluationCompilee" />
+          <EntitySet Name="Juge" EntityType="Self.Juge" />
+          <EntitySet Name="Nageur" EntityType="Self.Nageur" />
+          <EntitySet Name="Profil" EntityType="Self.Profil" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" />
+          <AssociationSet Name="FK_Ballet_id_CategorieBallet" Association="Self.FK_Ballet_id_CategorieBallet">
+            <End Role="CategorieBallet" EntitySet="CategorieBallet" />
+            <End Role="Ballet" EntitySet="Ballet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ballet_id_Epreuve" Association="Self.FK_Ballet_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Ballet" EntitySet="Ballet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_Ballet" Association="Self.FK_Evaluation_id_Ballet">
+            <End Role="Ballet" EntitySet="Ballet" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationCompilee_id_Ballet" Association="Self.FK_EvaluationCompilee_id_Ballet">
+            <End Role="Ballet" EntitySet="Ballet" />
+            <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coefficient_id_CategorieBallet" Association="Self.FK_Coefficient_id_CategorieBallet">
+            <End Role="CategorieBallet" EntitySet="CategorieBallet" />
+            <End Role="Coefficient" EntitySet="Coefficient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Competition_id_CategorieCompetition" Association="Self.FK_Competition_id_CategorieCompetition">
+            <End Role="CategorieCompetition" EntitySet="CategorieCompetition" />
+            <End Role="Competition" EntitySet="Competition" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coefficient_id_CategorieEpreuve" Association="Self.FK_Coefficient_id_CategorieEpreuve">
+            <End Role="CategorieEpreuve" EntitySet="CategorieEpreuve" />
+            <End Role="Coefficient" EntitySet="Coefficient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Epreuve_id_CategorieEpreuve" Association="Self.FK_Epreuve_id_CategorieEpreuve">
+            <End Role="CategorieEpreuve" EntitySet="CategorieEpreuve" />
+            <End Role="Epreuve" EntitySet="Epreuve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coefficient_id_CategorieEvaluation" Association="Self.FK_Coefficient_id_CategorieEvaluation">
+            <End Role="CategorieEvaluation" EntitySet="CategorieEvaluation" />
+            <End Role="Coefficient" EntitySet="Coefficient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_CategorieEvaluation" Association="Self.FK_Evaluation_id_CategorieEvaluation">
+            <End Role="CategorieEvaluation" EntitySet="CategorieEvaluation" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_id_CategorieTour" Association="Self.FK_Tour_id_CategorieTour">
+            <End Role="CategorieTour" EntitySet="CategorieTour" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nageur_id_Club" Association="Self.FK_Nageur_id_Club">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Nageur" EntitySet="Nageur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_id_Competition" Association="Self.FK_Tour_id_Competition">
+            <End Role="Competition" EntitySet="Competition" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Epreuve_id_Tour" Association="Self.FK_Epreuve_id_Tour">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Epreuve" EntitySet="Epreuve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipe_id_Epreuve" Association="Self.FK_Equipe_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipe_id_Nageur" Association="Self.FK_Equipe_id_Nageur">
+            <End Role="Nageur" EntitySet="Nageur" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_Juge" Association="Self.FK_Evaluation_id_Juge">
+            <End Role="Juge" EntitySet="Juge" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationCompilee_id_Juge" Association="Self.FK_EvaluationCompilee_id_Juge">
+            <End Role="Juge" EntitySet="Juge" />
+            <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Juge_id_Profil" Association="Self.FK_Juge_id_Profil">
+            <End Role="Profil" EntitySet="Profil" />
+            <End Role="Juge" EntitySet="Juge" />
+          </AssociationSet>
+          <AssociationSet Name="JugeDEpreuve" Association="Self.JugeDEpreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Juge" EntitySet="Juge" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ffn_siteModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Ballet">
+            <EntityTypeMapping TypeName="ffn_siteModel.Ballet">
+              <MappingFragment StoreEntitySet="Ballet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_CategorieBallet" ColumnName="id_CategorieBallet" />
+                <ScalarProperty Name="id_Epreuve" ColumnName="id_Epreuve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategorieBallet">
+            <EntityTypeMapping TypeName="ffn_siteModel.CategorieBallet">
+              <MappingFragment StoreEntitySet="CategorieBallet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lbl" ColumnName="lbl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategorieCompetition">
+            <EntityTypeMapping TypeName="ffn_siteModel.CategorieCompetition">
+              <MappingFragment StoreEntitySet="CategorieCompetition">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lbl" ColumnName="lbl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategorieEpreuve">
+            <EntityTypeMapping TypeName="ffn_siteModel.CategorieEpreuve">
+              <MappingFragment StoreEntitySet="CategorieEpreuve">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lbl" ColumnName="lbl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategorieEvaluation">
+            <EntityTypeMapping TypeName="ffn_siteModel.CategorieEvaluation">
+              <MappingFragment StoreEntitySet="CategorieEvaluation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lbl" ColumnName="lbl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategorieTour">
+            <EntityTypeMapping TypeName="ffn_siteModel.CategorieTour">
+              <MappingFragment StoreEntitySet="CategorieTour">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lbl" ColumnName="lbl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Club">
+            <EntityTypeMapping TypeName="ffn_siteModel.Club">
+              <MappingFragment StoreEntitySet="Club">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nomClub" ColumnName="nomClub" />
+                <ScalarProperty Name="villeSiege" ColumnName="villeSiege" />
+                <ScalarProperty Name="CPSiege" ColumnName="CPSiege" />
+                <ScalarProperty Name="rueSiege" ColumnName="rueSiege" />
+                <ScalarProperty Name="nomDirigeant" ColumnName="nomDirigeant" />
+                <ScalarProperty Name="prenomDirigeant" ColumnName="prenomDirigeant" />
+                <ScalarProperty Name="telDirigeant" ColumnName="telDirigeant" />
+                <ScalarProperty Name="mailDirigeant" ColumnName="mailDirigeant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coefficient">
+            <EntityTypeMapping TypeName="ffn_siteModel.Coefficient">
+              <MappingFragment StoreEntitySet="Coefficient">
+                <ScalarProperty Name="coef" ColumnName="coef" />
+                <ScalarProperty Name="id_CategorieEvaluation" ColumnName="id_CategorieEvaluation" />
+                <ScalarProperty Name="id_CategorieEpreuve" ColumnName="id_CategorieEpreuve" />
+                <ScalarProperty Name="id_CategorieBallet" ColumnName="id_CategorieBallet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competition">
+            <EntityTypeMapping TypeName="ffn_siteModel.Competition">
+              <MappingFragment StoreEntitySet="Competition">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="titre" ColumnName="titre" />
+                <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
+                <ScalarProperty Name="lieuVille" ColumnName="lieuVille" />
+                <ScalarProperty Name="lieuCP" ColumnName="lieuCP" />
+                <ScalarProperty Name="id_CategorieCompetition" ColumnName="id_CategorieCompetition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Epreuve">
+            <EntityTypeMapping TypeName="ffn_siteModel.Epreuve">
+              <MappingFragment StoreEntitySet="Epreuve">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Tour" ColumnName="id_Tour" />
+                <ScalarProperty Name="id_CategorieEpreuve" ColumnName="id_CategorieEpreuve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipe">
+            <EntityTypeMapping TypeName="ffn_siteModel.Equipe">
+              <MappingFragment StoreEntitySet="Equipe">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Epreuve" ColumnName="id_Epreuve" />
+                <ScalarProperty Name="id_Nageur" ColumnName="id_Nageur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluation">
+            <EntityTypeMapping TypeName="ffn_siteModel.Evaluation">
+              <MappingFragment StoreEntitySet="Evaluation">
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="id_CategorieEvaluation" ColumnName="id_CategorieEvaluation" />
+                <ScalarProperty Name="id_Ballet" ColumnName="id_Ballet" />
+                <ScalarProperty Name="id_Juge" ColumnName="id_Juge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EvaluationCompilee">
+            <EntityTypeMapping TypeName="ffn_siteModel.EvaluationCompilee">
+              <MappingFragment StoreEntitySet="EvaluationCompilee">
+                <ScalarProperty Name="noteCompilee" ColumnName="noteCompilee" />
+                <ScalarProperty Name="penalite" ColumnName="penalite" />
+                <ScalarProperty Name="id_Ballet" ColumnName="id_Ballet" />
+                <ScalarProperty Name="id_Juge" ColumnName="id_Juge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Juge">
+            <EntityTypeMapping TypeName="ffn_siteModel.Juge">
+              <MappingFragment StoreEntitySet="Juge">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="rang" ColumnName="rang" />
+                <ScalarProperty Name="estArbitre" ColumnName="estArbitre" />
+                <ScalarProperty Name="id_Profil" ColumnName="id_Profil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nageur">
+            <EntityTypeMapping TypeName="ffn_siteModel.Nageur">
+              <MappingFragment StoreEntitySet="Nageur">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="anneeNaissance" ColumnName="anneeNaissance" />
+                <ScalarProperty Name="statut" ColumnName="statut" />
+                <ScalarProperty Name="forfait" ColumnName="forfait" />
+                <ScalarProperty Name="id_Club" ColumnName="id_Club" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profil">
+            <EntityTypeMapping TypeName="ffn_siteModel.Profil">
+              <MappingFragment StoreEntitySet="Profil">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="dateConnexion" ColumnName="dateConnexion" />
+                <ScalarProperty Name="estAdmin" ColumnName="estAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tour">
+            <EntityTypeMapping TypeName="ffn_siteModel.Tour">
+              <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nbEquipe" ColumnName="nbEquipe" />
+                <ScalarProperty Name="id_Competition" ColumnName="id_Competition" />
+                <ScalarProperty Name="id_CategorieTour" ColumnName="id_CategorieTour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="JugeDEpreuve" TypeName="ffn_siteModel.JugeDEpreuve" StoreEntitySet="JugeDEpreuve">
+            <EndProperty Name="Epreuve">
+              <ScalarProperty Name="id" ColumnName="id_Epreuve" />
+            </EndProperty>
+            <EndProperty Name="Juge">
+              <ScalarProperty Name="id" ColumnName="id_Juge" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

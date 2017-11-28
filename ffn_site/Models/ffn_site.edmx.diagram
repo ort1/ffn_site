@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="31fdd6ba9ce14c1db43355a496325e12" Name="Diagram1">
+        <EntityTypeShape EntityType="ffn_siteModel.Ballet" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.CategorieBallet" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.CategorieCompetition" Width="1.5" PointX="1.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.CategorieEpreuve" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.CategorieEvaluation" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.CategorieTour" Width="1.5" PointX="1.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Club" Width="1.5" PointX="3.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Coefficient" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Competition" Width="1.5" PointX="1.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Epreuve" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Equipe" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Evaluation" Width="1.5" PointX="13.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.EvaluationCompilee" Width="1.5" PointX="13.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Juge" Width="1.5" PointX="11.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Nageur" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Profil" Width="1.5" PointX="9" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ffn_siteModel.Tour" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ffn_siteModel.FK_Ballet_id_CategorieBallet" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Ballet_id_Epreuve" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Evaluation_id_Ballet" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_EvaluationCompilee_id_Ballet" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Coefficient_id_CategorieBallet" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Competition_id_CategorieCompetition" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Coefficient_id_CategorieEpreuve" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Epreuve_id_CategorieEpreuve" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Coefficient_id_CategorieEvaluation" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Evaluation_id_CategorieEvaluation" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Tour_id_CategorieTour" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Nageur_id_Club" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Tour_id_Competition" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Epreuve_id_Tour" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Equipe_id_Epreuve" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Equipe_id_Nageur" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Evaluation_id_Juge" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_EvaluationCompilee_id_Juge" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.FK_Juge_id_Profil" ManuallyRouted="false" />
+        <AssociationConnector Association="ffn_siteModel.JugeDEpreuve" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
