@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ffn_site.Models;
+using ffn_site.Models.Dal;
 using System.Web.Mvc;
 
 namespace ffn_site.Controllers
@@ -18,5 +16,16 @@ namespace ffn_site.Controllers
         {
             return View();
         }
+
+        // POST: Profil
+        [HttpPost]
+        public ActionResult Connexion(string login, string password)
+        {
+            IDal profilDal = new ProfilDal();
+            Profil profilFound = profilDal.getProfil(login, password);
+            ViewData["profilAdmin"] = (profilFound != null && (bool)profilFound.estAdmin);
+            return View();
+        }
+
     }
 }
