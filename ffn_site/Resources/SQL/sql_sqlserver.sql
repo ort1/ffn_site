@@ -20,40 +20,40 @@ drop table if exists Profil;
 
 CREATE TABLE Club(
         id              int IDENTITY(1,1) NOT NULL ,
-        nomClub         text ,
-		villeSiege		text ,
-		CPSiege			text ,
-		rueSiege		text ,
-        nomDirigeant    text ,
-        prenomDirigeant text ,
-        telDirigeant    text ,
-        mailDirigeant   text ,
+        nomClub         varchar(max) ,
+		villeSiege		varchar(max) ,
+		CPSiege			varchar(max) ,
+		rueSiege		varchar(max) ,
+        nomDirigeant    varchar(max) ,
+        prenomDirigeant varchar(max) ,
+        telDirigeant    varchar(max) ,
+        mailDirigeant   varchar(max) ,
         PRIMARY KEY (id )
 );
 
 CREATE TABLE CategorieCompetition(
         id  int IDENTITY(1,1) NOT NULL ,
-        lbl text ,
+        lbl varchar(max) ,
         PRIMARY KEY (id )
 );
 
 CREATE TABLE Competition(
         id                      int IDENTITY(1,1) NOT NULL ,
-        titre                   text ,
+        titre                   varchar(max) ,
         dateDebut               Date ,
-        lieuVille               text ,
-        lieuCP                  text ,
+        lieuVille               varchar(max) ,
+        lieuCP                  varchar(max) ,
         id_CategorieCompetition Int NOT NULL ,
         PRIMARY KEY (id )
 );
 
 CREATE TABLE Nageur(
         id             int IDENTITY(1,1) NOT NULL ,
-        nom            text ,
-        prenom         text ,
+        nom            varchar(max) ,
+        prenom         varchar(max) ,
         anneeNaissance Int ,
-        statut         text ,
-        forfait        text ,
+        statut         varchar(max) ,
+        forfait        varchar(max) ,
         id_Club        Int NOT NULL ,
         PRIMARY KEY (id )
 );
@@ -68,8 +68,8 @@ CREATE TABLE Tour(
 
 CREATE TABLE Juge(
         id         int IDENTITY(1,1) NOT NULL ,
-        nom        text ,
-        prenom     text ,
+        nom        varchar(max) ,
+        prenom     varchar(max) ,
         rang       Int ,
         estArbitre BIT ,
         id_Profil    Int NOT NULL ,
@@ -78,27 +78,27 @@ CREATE TABLE Juge(
 
 CREATE TABLE CategorieBallet(
         id  int IDENTITY(1,1) NOT NULL ,
-        lbl text ,
+        lbl varchar(max) ,
         PRIMARY KEY (id )
 );
 
 CREATE TABLE CategorieEpreuve(
         id  int IDENTITY(1,1) NOT NULL ,
-        lbl text ,
+        lbl varchar(max) ,
         PRIMARY KEY (id )
 );
 
 CREATE TABLE CategorieEvaluation(
         id  int IDENTITY(1,1) NOT NULL ,
-        lbl text ,
+        lbl varchar(max) ,
         PRIMARY KEY (id )
 );
 
 CREATE TABLE Profil(
         id            int IDENTITY(1,1) NOT NULL ,
-        login         text ,
-        password      text ,
-        mail          text ,
+        login         varchar(max) ,
+        password      varchar(max) ,
+        mail          varchar(max) ,
         dateCreation  Date ,
         dateConnexion Date ,
 		estAdmin	  BIT ,
@@ -127,7 +127,7 @@ CREATE TABLE Ballet(
 
 CREATE TABLE CategorieTour(
         id  int IDENTITY(1,1) NOT NULL ,
-        lbl text ,
+        lbl varchar(max) ,
         PRIMARY KEY (id )
 );
 
