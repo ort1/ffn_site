@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ffn_site.Models.Dal
 {
-    interface IDal : IDisposable
+    interface IDalProfil : IDisposable
     {
         Profil getProfil(string login, string password);
+        Profil getProfil(int id);
+        Profil getProfil(string login);
+        bool AddProfil(string login, string password, string email);
     }
 }

@@ -3,6 +3,10 @@
     padding-bottom: 20px;
 }
 
+footer {
+    text-align : center;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -16,9 +20,18 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.erreur {
+    z-index: 1000000000;
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 20px;
+    width: intrinsic; /* Safari/WebKit utilisent un nom non-standard */
+    width: -moz-max-content; /* Firefox/Gecko */
+    width: -webkit-max-content; /* Chrome */
+    padding: 15px;
+    background-color: #fafafa;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
 }

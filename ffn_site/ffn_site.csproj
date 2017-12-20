@@ -150,7 +150,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JugeController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,7 +184,7 @@
     <Compile Include="Models\Competition.cs">
       <DependentUpon>ffn_site.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dal\IDal.cs" />
+    <Compile Include="Models\Dal\IDalProfil.cs" />
     <Compile Include="Models\Dal\ProfilDal.cs" />
     <Compile Include="Models\Epreuve.cs">
       <DependentUpon>ffn_site.tt</DependentUpon>
@@ -231,12 +233,12 @@
     <Content Include="App_Data\ffn_site_log.ldf">
       <DependentUpon>ffn_site.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Models\ffn_site.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ffn_site.edmx</DependentUpon>
@@ -247,6 +249,8 @@
       <DependentUpon>ffn_site.edmx</DependentUpon>
       <LastGenOutput>ffn_site.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\img\logo_ffn.ico" />
+    <Content Include="Resources\img\logo_ffn.jpg" />
     <Content Include="Resources\SQL\constraint.sql" />
     <Content Include="Resources\SQL\drop.sql" />
     <Content Include="Resources\SQL\insert.sql" />
@@ -265,6 +269,7 @@
       <DependentUpon>ffn_site.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\erreurs.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -289,6 +294,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Profil\Connexion.cshtml" />
     <Content Include="Views\Profil\Inscription.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Juge\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -310,6 +317,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\img\logo_ffn.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

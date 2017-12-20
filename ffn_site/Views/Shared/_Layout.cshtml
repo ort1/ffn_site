@@ -1,14 +1,28 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Fédération française de natation synchronisée</title>
+    <title>@ViewBag.Title - FFN Compétitions</title>
+    <link rel="shortcut icon" href="@Url.Content("~/Resources/img/logo_ffn.ico")" type="image/x-icon" />
+    <link rel="icon" href="@Url.Content("~/Resources/img/logo_ffn.ico")" type="image/x-icon" />
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @foreach (var item in ViewContext.ViewData.ModelState)
+    {
+        if (item.Value.Errors.Any())
+        {
+            <div class="erreur alert alert-danger" role="alert">
+                <p><b>@item.Key</b></p>
+                <p>@((item.Value == null || item.Value.Value == null) ? "" : item.Value.Value.RawValue)</p>
+                <p>@(string.Join("; ", item.Value.Errors.Select(x => x.ErrorMessage)))</p>
+            </div>
+        }
+    }
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -37,6 +51,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/custom")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
