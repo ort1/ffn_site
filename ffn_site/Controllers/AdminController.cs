@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace ffn_site.Controllers
 {
 
-    [Authorize(Roles="admin")]
+    [Authorize]
     public class AdminController : Controller
     {
         // GET: Admin

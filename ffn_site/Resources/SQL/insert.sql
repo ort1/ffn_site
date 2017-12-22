@@ -7,6 +7,13 @@ insert into Profil (login, password, mail, dateCreation, estAdmin) values (
   1
 );
 
+insert into Profil (login, password, mail, dateCreation, estAdmin) values (
+  'juge1',
+  'c378ee4afba40e39cc54a01cb857cc1b46921d4ed39a0d41f5ba21d338cf8c6235bbb66857c692390a9ddcc9fd872a091af4f79f08c1dadb385ac92dd6f6eab6',
+  'farcry69@live.fr',
+  GETDATE(),
+  0
+);
 -- CategorieCompetition
 insert into CategorieCompetition (lbl) values
 	('Avenirs (9-12 ans)'),

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace ffn_site.Controllers
 {
 
-    [Authorize(Roles="juge")]
+    [Authorize]
     public class JugeController : Controller
     {
         // GET: Juge
