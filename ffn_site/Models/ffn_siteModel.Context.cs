@@ -13,10 +13,10 @@ namespace ffn_site.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class ffn_siteEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public ffn_siteEntities()
+            : base("name=ffn_siteEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace ffn_site.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Appartenir> Appartenir { get; set; }
         public virtual DbSet<Ballet> Ballet { get; set; }
         public virtual DbSet<CategorieBallet> CategorieBallet { get; set; }
         public virtual DbSet<CategorieCompetition> CategorieCompetition { get; set; }
@@ -39,7 +40,9 @@ namespace ffn_site.Models
         public virtual DbSet<Evaluation> Evaluation { get; set; }
         public virtual DbSet<EvaluationCompilee> EvaluationCompilee { get; set; }
         public virtual DbSet<Juge> Juge { get; set; }
+        public virtual DbSet<Juger> Juger { get; set; }
         public virtual DbSet<Nageur> Nageur { get; set; }
+        public virtual DbSet<Personne> Personne { get; set; }
         public virtual DbSet<Profil> Profil { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
     }

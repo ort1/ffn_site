@@ -37,20 +37,4 @@
             }
         </div>
     </div>
-    @if (ViewData["profilAdmin"] != null && (bool)ViewData["profilAdmin"])
-    {
-        <p>
-            <div class="alert alert-info" role="alert">
-                Profil Admin --> OK!
-            </div>
-        </p>
-    }
-    @if (ViewData["profilAdmin"] != null && !(bool)ViewData["profilAdmin"])
-    {
-        <p>
-            <div class="alert alert-danger" role="alert">
-                Profil Not Admin --> NOT OK!
-            </div>
-        </p>
-    }
 </div>

@@ -12,24 +12,29 @@ namespace ffn_site.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Competition
+    public partial class Personne
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Competition()
+        public Personne()
         {
-            this.Tour = new HashSet<Tour>();
+            this.Club = new HashSet<Club>();
+            this.Juge = new HashSet<Juge>();
+            this.Nageur = new HashSet<Nageur>();
         }
     
         public int id { get; set; }
-        public string titre { get; set; }
-        public Nullable<System.DateTime> dateDebut { get; set; }
-        public string lieuVille { get; set; }
-        public string lieuCP { get; set; }
-        public Nullable<bool> enCours { get; set; }
-        public Nullable<int> id_CategorieCompetition { get; set; }
+        public string nom { get; set; }
+        public string prenom { get; set; }
+        public Nullable<System.DateTime> dateNaissance { get; set; }
+        public string telFixe { get; set; }
+        public string telPortable { get; set; }
+        public string mail { get; set; }
     
-        public virtual CategorieCompetition CategorieCompetition { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour> Tour { get; set; }
+        public virtual ICollection<Club> Club { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Juge> Juge { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Nageur> Nageur { get; set; }
     }
 }

@@ -9,11 +9,11 @@ namespace ffn_site.Models.Dal
 {
     public class ProfilDal : IDalProfil
     {
-        private Entities bdd;
+        private ffn_siteEntities bdd;
 
         public ProfilDal()
         {
-            bdd = new Entities();
+            bdd = new ffn_siteEntities();
         }
 
         public Profil getProfil(string login, string password)

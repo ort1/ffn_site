@@ -4,14 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ffn_siteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ffn_siteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appartenir">
+          <Key>
+            <PropertyRef Name="id_Nageur" />
+            <PropertyRef Name="id_Equipe" />
+          </Key>
+          <Property Name="statut" Type="varchar(max)" />
+          <Property Name="id_Nageur" Type="int" Nullable="false" />
+          <Property Name="id_Equipe" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ballet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_CategorieBallet" Type="int" Nullable="false" />
-          <Property Name="id_Epreuve" Type="int" Nullable="false" />
+          <Property Name="id_CategorieBallet" Type="int" />
+          <Property Name="id_Epreuve" Type="int" />
         </EntityType>
         <EntityType Name="CategorieBallet">
           <Key>
@@ -54,13 +63,12 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomClub" Type="varchar(max)" />
+          <Property Name="adresseSiege" Type="varchar(max)" />
+          <Property Name="cpSiege" Type="varchar(max)" />
           <Property Name="villeSiege" Type="varchar(max)" />
-          <Property Name="CPSiege" Type="varchar(max)" />
-          <Property Name="rueSiege" Type="varchar(max)" />
-          <Property Name="nomDirigeant" Type="varchar(max)" />
-          <Property Name="prenomDirigeant" Type="varchar(max)" />
-          <Property Name="telDirigeant" Type="varchar(max)" />
-          <Property Name="mailDirigeant" Type="varchar(max)" />
+          <Property Name="siteWeb" Type="varchar(max)" />
+          <Property Name="idFederal" Type="varchar(max)" />
+          <Property Name="id_Dirigeant" Type="int" />
         </EntityType>
         <EntityType Name="Coefficient">
           <Key>
@@ -82,76 +90,96 @@
           <Property Name="dateDebut" Type="date" />
           <Property Name="lieuVille" Type="varchar(max)" />
           <Property Name="lieuCP" Type="varchar(max)" />
-          <Property Name="id_CategorieCompetition" Type="int" Nullable="false" />
+          <Property Name="enCours" Type="bit" />
+          <Property Name="id_CategorieCompetition" Type="int" />
         </EntityType>
         <EntityType Name="Epreuve">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_Tour" Type="int" Nullable="false" />
-          <Property Name="id_CategorieEpreuve" Type="int" Nullable="false" />
+          <Property Name="id_Tour" Type="int" />
+          <Property Name="id_CategorieEpreuve" Type="int" />
         </EntityType>
         <EntityType Name="Equipe">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_Nageur" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="id_Epreuve" Type="int" Nullable="false" />
-          <Property Name="id_Nageur" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estForfait" Type="bit" />
+          <Property Name="id_Club" Type="int" />
         </EntityType>
         <EntityType Name="Evaluation">
           <Key>
             <PropertyRef Name="id_CategorieEvaluation" />
             <PropertyRef Name="id_Ballet" />
             <PropertyRef Name="id_Juge" />
+            <PropertyRef Name="id_Equipe" />
           </Key>
           <Property Name="note" Type="float" />
           <Property Name="id_CategorieEvaluation" Type="int" Nullable="false" />
           <Property Name="id_Ballet" Type="int" Nullable="false" />
           <Property Name="id_Juge" Type="int" Nullable="false" />
+          <Property Name="id_Equipe" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EvaluationCompilee">
           <Key>
             <PropertyRef Name="id_Ballet" />
             <PropertyRef Name="id_Juge" />
+            <PropertyRef Name="id_Equipe" />
           </Key>
           <Property Name="noteCompilee" Type="float" />
           <Property Name="penalite" Type="float" />
           <Property Name="id_Ballet" Type="int" Nullable="false" />
           <Property Name="id_Juge" Type="int" Nullable="false" />
+          <Property Name="id_Equipe" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Juge">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nom" Type="varchar(max)" />
-          <Property Name="prenom" Type="varchar(max)" />
           <Property Name="rang" Type="int" />
           <Property Name="estArbitre" Type="bit" />
-          <Property Name="id_Profil" Type="int" Nullable="false" />
+          <Property Name="id_Profil" Type="int" />
+          <Property Name="id_Personne" Type="int" />
         </EntityType>
-        <EntityType Name="JugeDEpreuve">
+        <EntityType Name="Juger">
           <Key>
-            <PropertyRef Name="id_Juge" />
             <PropertyRef Name="id_Epreuve" />
+            <PropertyRef Name="id_Juge" />
           </Key>
-          <Property Name="id_Juge" Type="int" Nullable="false" />
+          <Property Name="actif" Type="bit" />
           <Property Name="id_Epreuve" Type="int" Nullable="false" />
+          <Property Name="id_Juge" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Nageur">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Club" Type="int" />
+          <Property Name="id_Personne" Type="int" />
+        </EntityType>
+        <EntityType Name="Participer">
+          <Key>
+            <PropertyRef Name="id_Equipe" />
+            <PropertyRef Name="id_Epreuve" />
+          </Key>
+          <Property Name="id_Equipe" Type="int" Nullable="false" />
+          <Property Name="id_Epreuve" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nom" Type="varchar(max)" />
           <Property Name="prenom" Type="varchar(max)" />
-          <Property Name="anneeNaissance" Type="int" />
-          <Property Name="statut" Type="varchar(max)" />
-          <Property Name="forfait" Type="varchar(max)" />
-          <Property Name="id_Club" Type="int" Nullable="false" />
+          <Property Name="dateNaissance" Type="date" />
+          <Property Name="telFixe" Type="varchar(max)" />
+          <Property Name="telPortable" Type="varchar(max)" />
+          <Property Name="mail" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Profil">
           <Key>
@@ -171,11 +199,35 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nbEquipe" Type="int" />
-          <Property Name="id_Competition" Type="int" Nullable="false" />
-          <Property Name="id_CategorieTour" Type="int" Nullable="false" />
+          <Property Name="id_Competition" Type="int" />
+          <Property Name="id_CategorieTour" Type="int" />
         </EntityType>
+        <Association Name="FK_Appartenir_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="Appartenir" Type="Self.Appartenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Appartenir">
+              <PropertyRef Name="id_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appartenir_id_Nageur">
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="1" />
+          <End Role="Appartenir" Type="Self.Appartenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nageur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Appartenir">
+              <PropertyRef Name="id_Nageur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ballet_id_CategorieBallet">
-          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="1" />
+          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="0..1" />
           <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieBallet">
@@ -187,7 +239,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ballet_id_Epreuve">
-          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="0..1" />
           <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Epreuve">
@@ -195,6 +247,18 @@
             </Principal>
             <Dependent Role="Ballet">
               <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Club_id_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Club" Type="Self.Club" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Club">
+              <PropertyRef Name="id_Dirigeant" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,7 +299,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Competition_id_CategorieCompetition">
-          <End Role="CategorieCompetition" Type="Self.CategorieCompetition" Multiplicity="1" />
+          <End Role="CategorieCompetition" Type="Self.CategorieCompetition" Multiplicity="0..1" />
           <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieCompetition">
@@ -247,7 +311,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Epreuve_id_CategorieEpreuve">
-          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="1" />
+          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="0..1" />
           <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieEpreuve">
@@ -259,7 +323,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Epreuve_id_Tour">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
           <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tour">
@@ -270,27 +334,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Equipe_id_Epreuve">
-          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+        <Association Name="FK_Equipe_id_Club">
+          <End Role="Club" Type="Self.Club" Multiplicity="0..1" />
           <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Epreuve">
+            <Principal Role="Club">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Equipe">
-              <PropertyRef Name="id_Epreuve" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Equipe_id_Nageur">
-          <End Role="Nageur" Type="Self.Nageur" Multiplicity="1" />
-          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Nageur">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Equipe">
-              <PropertyRef Name="id_Nageur" />
+              <PropertyRef Name="id_Club" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -318,6 +370,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Evaluation_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Evaluation_id_Juge">
           <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
           <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
@@ -342,6 +406,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EvaluationCompilee_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluationCompilee">
+              <PropertyRef Name="id_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EvaluationCompilee_id_Juge">
           <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
           <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
@@ -354,32 +430,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_JgeDEpreuve_id_Epreuve">
-          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
-          <End Role="JugeDEpreuve" Type="Self.JugeDEpreuve" Multiplicity="*" />
+        <Association Name="FK_Juge_id_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Epreuve">
+            <Principal Role="Personne">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="JugeDEpreuve">
-              <PropertyRef Name="id_Epreuve" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JgeDEpreuve_id_Juge">
-          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
-          <End Role="JugeDEpreuve" Type="Self.JugeDEpreuve" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Juge">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="JugeDEpreuve">
-              <PropertyRef Name="id_Juge" />
+            <Dependent Role="Juge">
+              <PropertyRef Name="id_Personne" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Juge_id_Profil">
-          <End Role="Profil" Type="Self.Profil" Multiplicity="1" />
+          <End Role="Profil" Type="Self.Profil" Multiplicity="0..1" />
           <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profil">
@@ -390,8 +454,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Juger_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Juger" Type="Self.Juger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Juger">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Juger_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="Juger" Type="Self.Juger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Juger">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Nageur_id_Club">
-          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Club" Type="Self.Club" Multiplicity="0..1" />
           <End Role="Nageur" Type="Self.Nageur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Club">
@@ -402,8 +490,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Nageur_id_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nageur">
+              <PropertyRef Name="id_Personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Participer_id_Epreuve">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Participer" Type="Self.Participer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Epreuve">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Participer">
+              <PropertyRef Name="id_Epreuve" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Participer_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="Participer" Type="Self.Participer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Participer">
+              <PropertyRef Name="id_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tour_id_CategorieTour">
-          <End Role="CategorieTour" Type="Self.CategorieTour" Multiplicity="1" />
+          <End Role="CategorieTour" Type="Self.CategorieTour" Multiplicity="0..1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieTour">
@@ -415,7 +539,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tour_id_Competition">
-          <End Role="Competition" Type="Self.Competition" Multiplicity="1" />
+          <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Competition">
@@ -427,6 +551,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ffn_siteModelStoreContainer">
+          <EntitySet Name="Appartenir" EntityType="Self.Appartenir" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ballet" EntityType="Self.Ballet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategorieBallet" EntityType="Self.CategorieBallet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategorieCompetition" EntityType="Self.CategorieCompetition" Schema="dbo" store:Type="Tables" />
@@ -441,10 +566,20 @@
           <EntitySet Name="Evaluation" EntityType="Self.Evaluation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EvaluationCompilee" EntityType="Self.EvaluationCompilee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Juge" EntityType="Self.Juge" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="JugeDEpreuve" EntityType="Self.JugeDEpreuve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Juger" EntityType="Self.Juger" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nageur" EntityType="Self.Nageur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participer" EntityType="Self.Participer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personne" EntityType="Self.Personne" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profil" EntityType="Self.Profil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Appartenir_id_Equipe" Association="Self.FK_Appartenir_id_Equipe">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Appartenir" EntitySet="Appartenir" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appartenir_id_Nageur" Association="Self.FK_Appartenir_id_Nageur">
+            <End Role="Nageur" EntitySet="Nageur" />
+            <End Role="Appartenir" EntitySet="Appartenir" />
+          </AssociationSet>
           <AssociationSet Name="FK_Ballet_id_CategorieBallet" Association="Self.FK_Ballet_id_CategorieBallet">
             <End Role="CategorieBallet" EntitySet="CategorieBallet" />
             <End Role="Ballet" EntitySet="Ballet" />
@@ -452,6 +587,10 @@
           <AssociationSet Name="FK_Ballet_id_Epreuve" Association="Self.FK_Ballet_id_Epreuve">
             <End Role="Epreuve" EntitySet="Epreuve" />
             <End Role="Ballet" EntitySet="Ballet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Club_id_Personne" Association="Self.FK_Club_id_Personne">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Club" EntitySet="Club" />
           </AssociationSet>
           <AssociationSet Name="FK_Coefficient_id_CategorieBallet" Association="Self.FK_Coefficient_id_CategorieBallet">
             <End Role="CategorieBallet" EntitySet="CategorieBallet" />
@@ -477,12 +616,8 @@
             <End Role="Tour" EntitySet="Tour" />
             <End Role="Epreuve" EntitySet="Epreuve" />
           </AssociationSet>
-          <AssociationSet Name="FK_Equipe_id_Epreuve" Association="Self.FK_Equipe_id_Epreuve">
-            <End Role="Epreuve" EntitySet="Epreuve" />
-            <End Role="Equipe" EntitySet="Equipe" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Equipe_id_Nageur" Association="Self.FK_Equipe_id_Nageur">
-            <End Role="Nageur" EntitySet="Nageur" />
+          <AssociationSet Name="FK_Equipe_id_Club" Association="Self.FK_Equipe_id_Club">
+            <End Role="Club" EntitySet="Club" />
             <End Role="Equipe" EntitySet="Equipe" />
           </AssociationSet>
           <AssociationSet Name="FK_Evaluation_id_Ballet" Association="Self.FK_Evaluation_id_Ballet">
@@ -493,6 +628,10 @@
             <End Role="CategorieEvaluation" EntitySet="CategorieEvaluation" />
             <End Role="Evaluation" EntitySet="Evaluation" />
           </AssociationSet>
+          <AssociationSet Name="FK_Evaluation_id_Equipe" Association="Self.FK_Evaluation_id_Equipe">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Evaluation_id_Juge" Association="Self.FK_Evaluation_id_Juge">
             <End Role="Juge" EntitySet="Juge" />
             <End Role="Evaluation" EntitySet="Evaluation" />
@@ -501,25 +640,45 @@
             <End Role="Ballet" EntitySet="Ballet" />
             <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
           </AssociationSet>
+          <AssociationSet Name="FK_EvaluationCompilee_id_Equipe" Association="Self.FK_EvaluationCompilee_id_Equipe">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
+          </AssociationSet>
           <AssociationSet Name="FK_EvaluationCompilee_id_Juge" Association="Self.FK_EvaluationCompilee_id_Juge">
             <End Role="Juge" EntitySet="Juge" />
             <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
           </AssociationSet>
-          <AssociationSet Name="FK_JgeDEpreuve_id_Epreuve" Association="Self.FK_JgeDEpreuve_id_Epreuve">
-            <End Role="Epreuve" EntitySet="Epreuve" />
-            <End Role="JugeDEpreuve" EntitySet="JugeDEpreuve" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JgeDEpreuve_id_Juge" Association="Self.FK_JgeDEpreuve_id_Juge">
+          <AssociationSet Name="FK_Juge_id_Personne" Association="Self.FK_Juge_id_Personne">
+            <End Role="Personne" EntitySet="Personne" />
             <End Role="Juge" EntitySet="Juge" />
-            <End Role="JugeDEpreuve" EntitySet="JugeDEpreuve" />
           </AssociationSet>
           <AssociationSet Name="FK_Juge_id_Profil" Association="Self.FK_Juge_id_Profil">
             <End Role="Profil" EntitySet="Profil" />
             <End Role="Juge" EntitySet="Juge" />
           </AssociationSet>
+          <AssociationSet Name="FK_Juger_id_Epreuve" Association="Self.FK_Juger_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Juger" EntitySet="Juger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Juger_id_Juge" Association="Self.FK_Juger_id_Juge">
+            <End Role="Juge" EntitySet="Juge" />
+            <End Role="Juger" EntitySet="Juger" />
+          </AssociationSet>
           <AssociationSet Name="FK_Nageur_id_Club" Association="Self.FK_Nageur_id_Club">
             <End Role="Club" EntitySet="Club" />
             <End Role="Nageur" EntitySet="Nageur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nageur_id_Personne" Association="Self.FK_Nageur_id_Personne">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Nageur" EntitySet="Nageur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participer_id_Epreuve" Association="Self.FK_Participer_id_Epreuve">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Participer" EntitySet="Participer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Participer_id_Equipe" Association="Self.FK_Participer_id_Equipe">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Participer" EntitySet="Participer" />
           </AssociationSet>
           <AssociationSet Name="FK_Tour_id_CategorieTour" Association="Self.FK_Tour_id_CategorieTour">
             <End Role="CategorieTour" EntitySet="CategorieTour" />
@@ -530,17 +689,29 @@
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ffn_siteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Appartenir">
+          <Key>
+            <PropertyRef Name="id_Nageur" />
+            <PropertyRef Name="id_Equipe" />
+          </Key>
+          <Property Name="statut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_Nageur" Type="Int32" Nullable="false" />
+          <Property Name="id_Equipe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipe" Relationship="Self.FK_Appartenir_id_Equipe" FromRole="Appartenir" ToRole="Equipe" />
+          <NavigationProperty Name="Nageur" Relationship="Self.FK_Appartenir_id_Nageur" FromRole="Appartenir" ToRole="Nageur" />
+        </EntityType>
         <EntityType Name="Ballet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_CategorieBallet" Type="Int32" Nullable="false" />
-          <Property Name="id_Epreuve" Type="Int32" Nullable="false" />
+          <Property Name="id_CategorieBallet" Type="Int32" />
+          <Property Name="id_Epreuve" Type="Int32" />
           <NavigationProperty Name="CategorieBallet" Relationship="Self.FK_Ballet_id_CategorieBallet" FromRole="Ballet" ToRole="CategorieBallet" />
           <NavigationProperty Name="Epreuve" Relationship="Self.FK_Ballet_id_Epreuve" FromRole="Ballet" ToRole="Epreuve" />
           <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_Ballet" FromRole="Ballet" ToRole="Evaluation" />
@@ -595,13 +766,14 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nomClub" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="adresseSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cpSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="villeSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CPSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="rueSiege" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="nomDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="prenomDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="telDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="mailDirigeant" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="siteWeb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idFederal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_Dirigeant" Type="Int32" />
+          <NavigationProperty Name="Personne" Relationship="Self.FK_Club_id_Personne" FromRole="Club" ToRole="Personne" />
+          <NavigationProperty Name="Equipe" Relationship="Self.FK_Equipe_id_Club" FromRole="Club" ToRole="Equipe" />
           <NavigationProperty Name="Nageur" Relationship="Self.FK_Nageur_id_Club" FromRole="Club" ToRole="Nageur" />
         </EntityType>
         <EntityType Name="Coefficient">
@@ -627,7 +799,8 @@
           <Property Name="dateDebut" Type="DateTime" Precision="0" />
           <Property Name="lieuVille" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="lieuCP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="id_CategorieCompetition" Type="Int32" Nullable="false" />
+          <Property Name="enCours" Type="Boolean" />
+          <Property Name="id_CategorieCompetition" Type="Int32" />
           <NavigationProperty Name="CategorieCompetition" Relationship="Self.FK_Competition_id_CategorieCompetition" FromRole="Competition" ToRole="CategorieCompetition" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_id_Competition" FromRole="Competition" ToRole="Tour" />
         </EntityType>
@@ -636,49 +809,57 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_Tour" Type="Int32" Nullable="false" />
-          <Property Name="id_CategorieEpreuve" Type="Int32" Nullable="false" />
+          <Property Name="id_Tour" Type="Int32" />
+          <Property Name="id_CategorieEpreuve" Type="Int32" />
           <NavigationProperty Name="Ballet" Relationship="Self.FK_Ballet_id_Epreuve" FromRole="Epreuve" ToRole="Ballet" />
           <NavigationProperty Name="CategorieEpreuve" Relationship="Self.FK_Epreuve_id_CategorieEpreuve" FromRole="Epreuve" ToRole="CategorieEpreuve" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_Epreuve_id_Tour" FromRole="Epreuve" ToRole="Tour" />
-          <NavigationProperty Name="Equipe" Relationship="Self.FK_Equipe_id_Epreuve" FromRole="Epreuve" ToRole="Equipe" />
-          <NavigationProperty Name="Juge" Relationship="Self.JugeDEpreuve" FromRole="Epreuve" ToRole="Juge" />
+          <NavigationProperty Name="Juger" Relationship="Self.FK_Juger_id_Epreuve" FromRole="Epreuve" ToRole="Juger" />
+          <NavigationProperty Name="Equipe" Relationship="Self.Participer" FromRole="Epreuve" ToRole="Equipe" />
         </EntityType>
         <EntityType Name="Equipe">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_Nageur" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_Epreuve" Type="Int32" Nullable="false" />
-          <Property Name="id_Nageur" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Epreuve" Relationship="Self.FK_Equipe_id_Epreuve" FromRole="Equipe" ToRole="Epreuve" />
-          <NavigationProperty Name="Nageur" Relationship="Self.FK_Equipe_id_Nageur" FromRole="Equipe" ToRole="Nageur" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estForfait" Type="Boolean" />
+          <Property Name="id_Club" Type="Int32" />
+          <NavigationProperty Name="Appartenir" Relationship="Self.FK_Appartenir_id_Equipe" FromRole="Equipe" ToRole="Appartenir" />
+          <NavigationProperty Name="Club" Relationship="Self.FK_Equipe_id_Club" FromRole="Equipe" ToRole="Club" />
+          <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_Equipe" FromRole="Equipe" ToRole="Evaluation" />
+          <NavigationProperty Name="EvaluationCompilee" Relationship="Self.FK_EvaluationCompilee_id_Equipe" FromRole="Equipe" ToRole="EvaluationCompilee" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.Participer" FromRole="Equipe" ToRole="Epreuve" />
         </EntityType>
         <EntityType Name="Evaluation">
           <Key>
             <PropertyRef Name="id_CategorieEvaluation" />
             <PropertyRef Name="id_Ballet" />
             <PropertyRef Name="id_Juge" />
+            <PropertyRef Name="id_Equipe" />
           </Key>
           <Property Name="note" Type="Double" />
           <Property Name="id_CategorieEvaluation" Type="Int32" Nullable="false" />
           <Property Name="id_Ballet" Type="Int32" Nullable="false" />
           <Property Name="id_Juge" Type="Int32" Nullable="false" />
+          <Property Name="id_Equipe" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ballet" Relationship="Self.FK_Evaluation_id_Ballet" FromRole="Evaluation" ToRole="Ballet" />
           <NavigationProperty Name="CategorieEvaluation" Relationship="Self.FK_Evaluation_id_CategorieEvaluation" FromRole="Evaluation" ToRole="CategorieEvaluation" />
+          <NavigationProperty Name="Equipe" Relationship="Self.FK_Evaluation_id_Equipe" FromRole="Evaluation" ToRole="Equipe" />
           <NavigationProperty Name="Juge" Relationship="Self.FK_Evaluation_id_Juge" FromRole="Evaluation" ToRole="Juge" />
         </EntityType>
         <EntityType Name="EvaluationCompilee">
           <Key>
             <PropertyRef Name="id_Ballet" />
             <PropertyRef Name="id_Juge" />
+            <PropertyRef Name="id_Equipe" />
           </Key>
           <Property Name="noteCompilee" Type="Double" />
           <Property Name="penalite" Type="Double" />
           <Property Name="id_Ballet" Type="Int32" Nullable="false" />
           <Property Name="id_Juge" Type="Int32" Nullable="false" />
+          <Property Name="id_Equipe" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ballet" Relationship="Self.FK_EvaluationCompilee_id_Ballet" FromRole="EvaluationCompilee" ToRole="Ballet" />
+          <NavigationProperty Name="Equipe" Relationship="Self.FK_EvaluationCompilee_id_Equipe" FromRole="EvaluationCompilee" ToRole="Equipe" />
           <NavigationProperty Name="Juge" Relationship="Self.FK_EvaluationCompilee_id_Juge" FromRole="EvaluationCompilee" ToRole="Juge" />
         </EntityType>
         <EntityType Name="Juge">
@@ -686,29 +867,52 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="rang" Type="Int32" />
           <Property Name="estArbitre" Type="Boolean" />
-          <Property Name="id_Profil" Type="Int32" Nullable="false" />
+          <Property Name="id_Profil" Type="Int32" />
+          <Property Name="id_Personne" Type="Int32" />
           <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_Juge" FromRole="Juge" ToRole="Evaluation" />
           <NavigationProperty Name="EvaluationCompilee" Relationship="Self.FK_EvaluationCompilee_id_Juge" FromRole="Juge" ToRole="EvaluationCompilee" />
+          <NavigationProperty Name="Personne" Relationship="Self.FK_Juge_id_Personne" FromRole="Juge" ToRole="Personne" />
           <NavigationProperty Name="Profil" Relationship="Self.FK_Juge_id_Profil" FromRole="Juge" ToRole="Profil" />
-          <NavigationProperty Name="Epreuve" Relationship="Self.JugeDEpreuve" FromRole="Juge" ToRole="Epreuve" />
+          <NavigationProperty Name="Juger" Relationship="Self.FK_Juger_id_Juge" FromRole="Juge" ToRole="Juger" />
+        </EntityType>
+        <EntityType Name="Juger">
+          <Key>
+            <PropertyRef Name="id_Epreuve" />
+            <PropertyRef Name="id_Juge" />
+          </Key>
+          <Property Name="actif" Type="Boolean" />
+          <Property Name="id_Epreuve" Type="Int32" Nullable="false" />
+          <Property Name="id_Juge" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Epreuve" Relationship="Self.FK_Juger_id_Epreuve" FromRole="Juger" ToRole="Epreuve" />
+          <NavigationProperty Name="Juge" Relationship="Self.FK_Juger_id_Juge" FromRole="Juger" ToRole="Juge" />
         </EntityType>
         <EntityType Name="Nageur">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Club" Type="Int32" />
+          <Property Name="id_Personne" Type="Int32" />
+          <NavigationProperty Name="Appartenir" Relationship="Self.FK_Appartenir_id_Nageur" FromRole="Nageur" ToRole="Appartenir" />
+          <NavigationProperty Name="Club" Relationship="Self.FK_Nageur_id_Club" FromRole="Nageur" ToRole="Club" />
+          <NavigationProperty Name="Personne" Relationship="Self.FK_Nageur_id_Personne" FromRole="Nageur" ToRole="Personne" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="prenom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="anneeNaissance" Type="Int32" />
-          <Property Name="statut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="forfait" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="id_Club" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Club" Relationship="Self.FK_Nageur_id_Club" FromRole="Nageur" ToRole="Club" />
-          <NavigationProperty Name="Equipe" Relationship="Self.FK_Equipe_id_Nageur" FromRole="Nageur" ToRole="Equipe" />
+          <Property Name="dateNaissance" Type="DateTime" Precision="0" />
+          <Property Name="telFixe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telPortable" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Club" Relationship="Self.FK_Club_id_Personne" FromRole="Personne" ToRole="Club" />
+          <NavigationProperty Name="Juge" Relationship="Self.FK_Juge_id_Personne" FromRole="Personne" ToRole="Juge" />
+          <NavigationProperty Name="Nageur" Relationship="Self.FK_Nageur_id_Personne" FromRole="Personne" ToRole="Nageur" />
         </EntityType>
         <EntityType Name="Profil">
           <Key>
@@ -729,14 +933,38 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nbEquipe" Type="Int32" />
-          <Property Name="id_Competition" Type="Int32" Nullable="false" />
-          <Property Name="id_CategorieTour" Type="Int32" Nullable="false" />
+          <Property Name="id_Competition" Type="Int32" />
+          <Property Name="id_CategorieTour" Type="Int32" />
           <NavigationProperty Name="CategorieTour" Relationship="Self.FK_Tour_id_CategorieTour" FromRole="Tour" ToRole="CategorieTour" />
           <NavigationProperty Name="Competition" Relationship="Self.FK_Tour_id_Competition" FromRole="Tour" ToRole="Competition" />
           <NavigationProperty Name="Epreuve" Relationship="Self.FK_Epreuve_id_Tour" FromRole="Tour" ToRole="Epreuve" />
         </EntityType>
+        <Association Name="FK_Appartenir_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="Appartenir" Type="Self.Appartenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Appartenir">
+              <PropertyRef Name="id_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appartenir_id_Nageur">
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="1" />
+          <End Role="Appartenir" Type="Self.Appartenir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nageur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Appartenir">
+              <PropertyRef Name="id_Nageur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ballet_id_CategorieBallet">
-          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="1" />
+          <End Role="CategorieBallet" Type="Self.CategorieBallet" Multiplicity="0..1" />
           <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieBallet">
@@ -748,7 +976,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ballet_id_Epreuve">
-          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="0..1" />
           <End Role="Ballet" Type="Self.Ballet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Epreuve">
@@ -796,7 +1024,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Competition_id_CategorieCompetition">
-          <End Role="CategorieCompetition" Type="Self.CategorieCompetition" Multiplicity="1" />
+          <End Role="CategorieCompetition" Type="Self.CategorieCompetition" Multiplicity="0..1" />
           <End Role="Competition" Type="Self.Competition" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieCompetition">
@@ -820,7 +1048,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Epreuve_id_CategorieEpreuve">
-          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="1" />
+          <End Role="CategorieEpreuve" Type="Self.CategorieEpreuve" Multiplicity="0..1" />
           <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieEpreuve">
@@ -856,7 +1084,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tour_id_CategorieTour">
-          <End Role="CategorieTour" Type="Self.CategorieTour" Multiplicity="1" />
+          <End Role="CategorieTour" Type="Self.CategorieTour" Multiplicity="0..1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CategorieTour">
@@ -867,8 +1095,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Club_id_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Club" Type="Self.Club" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Club">
+              <PropertyRef Name="id_Dirigeant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipe_id_Club">
+          <End Role="Club" Type="Self.Club" Multiplicity="0..1" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Equipe">
+              <PropertyRef Name="id_Club" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Nageur_id_Club">
-          <End Role="Club" Type="Self.Club" Multiplicity="1" />
+          <End Role="Club" Type="Self.Club" Multiplicity="0..1" />
           <End Role="Nageur" Type="Self.Nageur" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Club">
@@ -880,7 +1132,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tour_id_Competition">
-          <End Role="Competition" Type="Self.Competition" Multiplicity="1" />
+          <End Role="Competition" Type="Self.Competition" Multiplicity="0..1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Competition">
@@ -892,7 +1144,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Epreuve_id_Tour">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
           <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tour">
@@ -903,27 +1155,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Equipe_id_Epreuve">
+        <Association Name="FK_Juger_id_Epreuve">
           <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="1" />
-          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+          <End Role="Juger" Type="Self.Juger" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Epreuve">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Equipe">
+            <Dependent Role="Juger">
               <PropertyRef Name="id_Epreuve" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Equipe_id_Nageur">
-          <End Role="Nageur" Type="Self.Nageur" Multiplicity="1" />
-          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+        <Association Name="FK_Evaluation_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="Evaluation" Type="Self.Evaluation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Nageur">
+            <Principal Role="Equipe">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Equipe">
-              <PropertyRef Name="id_Nageur" />
+            <Dependent Role="Evaluation">
+              <PropertyRef Name="id_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EvaluationCompilee_id_Equipe">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="EvaluationCompilee" Type="Self.EvaluationCompilee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EvaluationCompilee">
+              <PropertyRef Name="id_Equipe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -951,8 +1215,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Juge_id_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Juge">
+              <PropertyRef Name="id_Personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Juge_id_Profil">
-          <End Role="Profil" Type="Self.Profil" Multiplicity="1" />
+          <End Role="Profil" Type="Self.Profil" Multiplicity="0..1" />
           <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profil">
@@ -963,11 +1239,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="JugeDEpreuve">
-          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
-          <End Role="Juge" Type="Self.Juge" Multiplicity="*" />
+        <Association Name="FK_Juger_id_Juge">
+          <End Role="Juge" Type="Self.Juge" Multiplicity="1" />
+          <End Role="Juger" Type="Self.Juger" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Juge">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Juger">
+              <PropertyRef Name="id_Juge" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Nageur_id_Personne">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Nageur" Type="Self.Nageur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Nageur">
+              <PropertyRef Name="id_Personne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Participer">
+          <End Role="Epreuve" Type="Self.Epreuve" Multiplicity="*" />
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ffn_siteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appartenir" EntityType="Self.Appartenir" />
           <EntitySet Name="Ballet" EntityType="Self.Ballet" />
           <EntitySet Name="CategorieBallet" EntityType="Self.CategorieBallet" />
           <EntitySet Name="CategorieCompetition" EntityType="Self.CategorieCompetition" />
@@ -982,9 +1283,19 @@
           <EntitySet Name="Evaluation" EntityType="Self.Evaluation" />
           <EntitySet Name="EvaluationCompilee" EntityType="Self.EvaluationCompilee" />
           <EntitySet Name="Juge" EntityType="Self.Juge" />
+          <EntitySet Name="Juger" EntityType="Self.Juger" />
           <EntitySet Name="Nageur" EntityType="Self.Nageur" />
+          <EntitySet Name="Personne" EntityType="Self.Personne" />
           <EntitySet Name="Profil" EntityType="Self.Profil" />
           <EntitySet Name="Tour" EntityType="Self.Tour" />
+          <AssociationSet Name="FK_Appartenir_id_Equipe" Association="Self.FK_Appartenir_id_Equipe">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Appartenir" EntitySet="Appartenir" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appartenir_id_Nageur" Association="Self.FK_Appartenir_id_Nageur">
+            <End Role="Nageur" EntitySet="Nageur" />
+            <End Role="Appartenir" EntitySet="Appartenir" />
+          </AssociationSet>
           <AssociationSet Name="FK_Ballet_id_CategorieBallet" Association="Self.FK_Ballet_id_CategorieBallet">
             <End Role="CategorieBallet" EntitySet="CategorieBallet" />
             <End Role="Ballet" EntitySet="Ballet" />
@@ -1029,6 +1340,14 @@
             <End Role="CategorieTour" EntitySet="CategorieTour" />
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
+          <AssociationSet Name="FK_Club_id_Personne" Association="Self.FK_Club_id_Personne">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Club" EntitySet="Club" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipe_id_Club" Association="Self.FK_Equipe_id_Club">
+            <End Role="Club" EntitySet="Club" />
+            <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
           <AssociationSet Name="FK_Nageur_id_Club" Association="Self.FK_Nageur_id_Club">
             <End Role="Club" EntitySet="Club" />
             <End Role="Nageur" EntitySet="Nageur" />
@@ -1041,13 +1360,17 @@
             <End Role="Tour" EntitySet="Tour" />
             <End Role="Epreuve" EntitySet="Epreuve" />
           </AssociationSet>
-          <AssociationSet Name="FK_Equipe_id_Epreuve" Association="Self.FK_Equipe_id_Epreuve">
+          <AssociationSet Name="FK_Juger_id_Epreuve" Association="Self.FK_Juger_id_Epreuve">
             <End Role="Epreuve" EntitySet="Epreuve" />
-            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Juger" EntitySet="Juger" />
           </AssociationSet>
-          <AssociationSet Name="FK_Equipe_id_Nageur" Association="Self.FK_Equipe_id_Nageur">
-            <End Role="Nageur" EntitySet="Nageur" />
+          <AssociationSet Name="FK_Evaluation_id_Equipe" Association="Self.FK_Evaluation_id_Equipe">
             <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Evaluation" EntitySet="Evaluation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EvaluationCompilee_id_Equipe" Association="Self.FK_EvaluationCompilee_id_Equipe">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
           </AssociationSet>
           <AssociationSet Name="FK_Evaluation_id_Juge" Association="Self.FK_Evaluation_id_Juge">
             <End Role="Juge" EntitySet="Juge" />
@@ -1057,13 +1380,25 @@
             <End Role="Juge" EntitySet="Juge" />
             <End Role="EvaluationCompilee" EntitySet="EvaluationCompilee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Juge_id_Personne" Association="Self.FK_Juge_id_Personne">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Juge" EntitySet="Juge" />
+          </AssociationSet>
           <AssociationSet Name="FK_Juge_id_Profil" Association="Self.FK_Juge_id_Profil">
             <End Role="Profil" EntitySet="Profil" />
             <End Role="Juge" EntitySet="Juge" />
           </AssociationSet>
-          <AssociationSet Name="JugeDEpreuve" Association="Self.JugeDEpreuve">
-            <End Role="Epreuve" EntitySet="Epreuve" />
+          <AssociationSet Name="FK_Juger_id_Juge" Association="Self.FK_Juger_id_Juge">
             <End Role="Juge" EntitySet="Juge" />
+            <End Role="Juger" EntitySet="Juger" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nageur_id_Personne" Association="Self.FK_Nageur_id_Personne">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Nageur" EntitySet="Nageur" />
+          </AssociationSet>
+          <AssociationSet Name="Participer" Association="Self.Participer">
+            <End Role="Epreuve" EntitySet="Epreuve" />
+            <End Role="Equipe" EntitySet="Equipe" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1071,7 +1406,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ffn_siteModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="ffn_siteModelStoreContainer" CdmEntityContainer="ffn_siteEntities">
+          <EntitySetMapping Name="Appartenir">
+            <EntityTypeMapping TypeName="ffn_siteModel.Appartenir">
+              <MappingFragment StoreEntitySet="Appartenir">
+                <ScalarProperty Name="statut" ColumnName="statut" />
+                <ScalarProperty Name="id_Nageur" ColumnName="id_Nageur" />
+                <ScalarProperty Name="id_Equipe" ColumnName="id_Equipe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Ballet">
             <EntityTypeMapping TypeName="ffn_siteModel.Ballet">
               <MappingFragment StoreEntitySet="Ballet">
@@ -1126,13 +1470,12 @@
               <MappingFragment StoreEntitySet="Club">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nomClub" ColumnName="nomClub" />
+                <ScalarProperty Name="adresseSiege" ColumnName="adresseSiege" />
+                <ScalarProperty Name="cpSiege" ColumnName="cpSiege" />
                 <ScalarProperty Name="villeSiege" ColumnName="villeSiege" />
-                <ScalarProperty Name="CPSiege" ColumnName="CPSiege" />
-                <ScalarProperty Name="rueSiege" ColumnName="rueSiege" />
-                <ScalarProperty Name="nomDirigeant" ColumnName="nomDirigeant" />
-                <ScalarProperty Name="prenomDirigeant" ColumnName="prenomDirigeant" />
-                <ScalarProperty Name="telDirigeant" ColumnName="telDirigeant" />
-                <ScalarProperty Name="mailDirigeant" ColumnName="mailDirigeant" />
+                <ScalarProperty Name="siteWeb" ColumnName="siteWeb" />
+                <ScalarProperty Name="idFederal" ColumnName="idFederal" />
+                <ScalarProperty Name="id_Dirigeant" ColumnName="id_Dirigeant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1154,6 +1497,7 @@
                 <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
                 <ScalarProperty Name="lieuVille" ColumnName="lieuVille" />
                 <ScalarProperty Name="lieuCP" ColumnName="lieuCP" />
+                <ScalarProperty Name="enCours" ColumnName="enCours" />
                 <ScalarProperty Name="id_CategorieCompetition" ColumnName="id_CategorieCompetition" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1171,8 +1515,8 @@
             <EntityTypeMapping TypeName="ffn_siteModel.Equipe">
               <MappingFragment StoreEntitySet="Equipe">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_Epreuve" ColumnName="id_Epreuve" />
-                <ScalarProperty Name="id_Nageur" ColumnName="id_Nageur" />
+                <ScalarProperty Name="estForfait" ColumnName="estForfait" />
+                <ScalarProperty Name="id_Club" ColumnName="id_Club" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1183,6 +1527,7 @@
                 <ScalarProperty Name="id_CategorieEvaluation" ColumnName="id_CategorieEvaluation" />
                 <ScalarProperty Name="id_Ballet" ColumnName="id_Ballet" />
                 <ScalarProperty Name="id_Juge" ColumnName="id_Juge" />
+                <ScalarProperty Name="id_Equipe" ColumnName="id_Equipe" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1193,6 +1538,7 @@
                 <ScalarProperty Name="penalite" ColumnName="penalite" />
                 <ScalarProperty Name="id_Ballet" ColumnName="id_Ballet" />
                 <ScalarProperty Name="id_Juge" ColumnName="id_Juge" />
+                <ScalarProperty Name="id_Equipe" ColumnName="id_Equipe" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1200,11 +1546,19 @@
             <EntityTypeMapping TypeName="ffn_siteModel.Juge">
               <MappingFragment StoreEntitySet="Juge">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="prenom" ColumnName="prenom" />
                 <ScalarProperty Name="rang" ColumnName="rang" />
                 <ScalarProperty Name="estArbitre" ColumnName="estArbitre" />
                 <ScalarProperty Name="id_Profil" ColumnName="id_Profil" />
+                <ScalarProperty Name="id_Personne" ColumnName="id_Personne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Juger">
+            <EntityTypeMapping TypeName="ffn_siteModel.Juger">
+              <MappingFragment StoreEntitySet="Juger">
+                <ScalarProperty Name="actif" ColumnName="actif" />
+                <ScalarProperty Name="id_Epreuve" ColumnName="id_Epreuve" />
+                <ScalarProperty Name="id_Juge" ColumnName="id_Juge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1212,12 +1566,21 @@
             <EntityTypeMapping TypeName="ffn_siteModel.Nageur">
               <MappingFragment StoreEntitySet="Nageur">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Club" ColumnName="id_Club" />
+                <ScalarProperty Name="id_Personne" ColumnName="id_Personne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personne">
+            <EntityTypeMapping TypeName="ffn_siteModel.Personne">
+              <MappingFragment StoreEntitySet="Personne">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="prenom" ColumnName="prenom" />
-                <ScalarProperty Name="anneeNaissance" ColumnName="anneeNaissance" />
-                <ScalarProperty Name="statut" ColumnName="statut" />
-                <ScalarProperty Name="forfait" ColumnName="forfait" />
-                <ScalarProperty Name="id_Club" ColumnName="id_Club" />
+                <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+                <ScalarProperty Name="telFixe" ColumnName="telFixe" />
+                <ScalarProperty Name="telPortable" ColumnName="telPortable" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1244,12 +1607,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="JugeDEpreuve" TypeName="ffn_siteModel.JugeDEpreuve" StoreEntitySet="JugeDEpreuve">
+          <AssociationSetMapping Name="Participer" TypeName="ffn_siteModel.Participer" StoreEntitySet="Participer">
             <EndProperty Name="Epreuve">
               <ScalarProperty Name="id" ColumnName="id_Epreuve" />
             </EndProperty>
-            <EndProperty Name="Juge">
-              <ScalarProperty Name="id" ColumnName="id_Juge" />
+            <EndProperty Name="Equipe">
+              <ScalarProperty Name="id" ColumnName="id_Equipe" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

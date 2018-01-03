@@ -12,16 +12,13 @@ namespace ffn_site.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EvaluationCompilee
+    public partial class Appartenir
     {
-        public Nullable<double> noteCompilee { get; set; }
-        public Nullable<double> penalite { get; set; }
-        public int id_Ballet { get; set; }
-        public int id_Juge { get; set; }
+        public string statut { get; set; }
+        public int id_Nageur { get; set; }
         public int id_Equipe { get; set; }
     
-        public virtual Ballet Ballet { get; set; }
         public virtual Equipe Equipe { get; set; }
-        public virtual Juge Juge { get; set; }
+        public virtual Nageur Nageur { get; set; }
     }
 }

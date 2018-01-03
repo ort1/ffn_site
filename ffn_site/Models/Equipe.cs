@@ -14,11 +14,27 @@ namespace ffn_site.Models
     
     public partial class Equipe
     {
-        public int id { get; set; }
-        public int id_Epreuve { get; set; }
-        public int id_Nageur { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Equipe()
+        {
+            this.Appartenir = new HashSet<Appartenir>();
+            this.Evaluation = new HashSet<Evaluation>();
+            this.EvaluationCompilee = new HashSet<EvaluationCompilee>();
+            this.Epreuve = new HashSet<Epreuve>();
+        }
     
-        public virtual Epreuve Epreuve { get; set; }
-        public virtual Nageur Nageur { get; set; }
+        public int id { get; set; }
+        public Nullable<bool> estForfait { get; set; }
+        public Nullable<int> id_Club { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appartenir> Appartenir { get; set; }
+        public virtual Club Club { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Evaluation> Evaluation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EvaluationCompilee> EvaluationCompilee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Epreuve> Epreuve { get; set; }
     }
 }

@@ -18,9 +18,11 @@ namespace ffn_site.Models
         public int id_CategorieEvaluation { get; set; }
         public int id_Ballet { get; set; }
         public int id_Juge { get; set; }
+        public int id_Equipe { get; set; }
     
         public virtual Ballet Ballet { get; set; }
         public virtual CategorieEvaluation CategorieEvaluation { get; set; }
+        public virtual Equipe Equipe { get; set; }
         public virtual Juge Juge { get; set; }
     }
 }

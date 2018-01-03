@@ -19,22 +19,22 @@ namespace ffn_site.Models
         {
             this.Evaluation = new HashSet<Evaluation>();
             this.EvaluationCompilee = new HashSet<EvaluationCompilee>();
-            this.Epreuve = new HashSet<Epreuve>();
+            this.Juger = new HashSet<Juger>();
         }
     
         public int id { get; set; }
-        public string nom { get; set; }
-        public string prenom { get; set; }
         public Nullable<int> rang { get; set; }
         public Nullable<bool> estArbitre { get; set; }
-        public int id_Profil { get; set; }
+        public Nullable<int> id_Profil { get; set; }
+        public Nullable<int> id_Personne { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evaluation> Evaluation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EvaluationCompilee> EvaluationCompilee { get; set; }
+        public virtual Personne Personne { get; set; }
         public virtual Profil Profil { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Epreuve> Epreuve { get; set; }
+        public virtual ICollection<Juger> Juger { get; set; }
     }
 }
