@@ -17,19 +17,22 @@ namespace ffn_site.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Club()
         {
+            this.Equipe = new HashSet<Equipe>();
             this.Nageur = new HashSet<Nageur>();
         }
     
         public int id { get; set; }
         public string nomClub { get; set; }
+        public string adresseSiege { get; set; }
+        public string cpSiege { get; set; }
         public string villeSiege { get; set; }
-        public string CPSiege { get; set; }
-        public string rueSiege { get; set; }
-        public string nomDirigeant { get; set; }
-        public string prenomDirigeant { get; set; }
-        public string telDirigeant { get; set; }
-        public string mailDirigeant { get; set; }
+        public string siteWeb { get; set; }
+        public string idFederal { get; set; }
+        public Nullable<int> id_Dirigeant { get; set; }
     
+        public virtual Personne Personne { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipe> Equipe { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nageur> Nageur { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle 'D:\ORT_Lyon\4MS2I\projet transverse\ffn_site\ffn_site\Models\ffn_site.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'D:\ORT_Lyon\4MS2I\projet transverse\ffn_site\ffn_site\Models\ffn_siteModel.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

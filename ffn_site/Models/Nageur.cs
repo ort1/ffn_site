@@ -17,19 +17,16 @@ namespace ffn_site.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nageur()
         {
-            this.Equipe = new HashSet<Equipe>();
+            this.Appartenir = new HashSet<Appartenir>();
         }
     
         public int id { get; set; }
-        public string nom { get; set; }
-        public string prenom { get; set; }
-        public Nullable<int> anneeNaissance { get; set; }
-        public string statut { get; set; }
-        public string forfait { get; set; }
-        public int id_Club { get; set; }
+        public Nullable<int> id_Club { get; set; }
+        public Nullable<int> id_Personne { get; set; }
     
-        public virtual Club Club { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipe> Equipe { get; set; }
+        public virtual ICollection<Appartenir> Appartenir { get; set; }
+        public virtual Club Club { get; set; }
+        public virtual Personne Personne { get; set; }
     }
 }

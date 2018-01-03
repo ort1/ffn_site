@@ -18,21 +18,21 @@ namespace ffn_site.Models
         public Epreuve()
         {
             this.Ballet = new HashSet<Ballet>();
+            this.Juger = new HashSet<Juger>();
             this.Equipe = new HashSet<Equipe>();
-            this.Juge = new HashSet<Juge>();
         }
     
         public int id { get; set; }
-        public int id_Tour { get; set; }
-        public int id_CategorieEpreuve { get; set; }
+        public Nullable<int> id_Tour { get; set; }
+        public Nullable<int> id_CategorieEpreuve { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ballet> Ballet { get; set; }
         public virtual CategorieEpreuve CategorieEpreuve { get; set; }
         public virtual Tour Tour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipe> Equipe { get; set; }
+        public virtual ICollection<Juger> Juger { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Juge> Juge { get; set; }
+        public virtual ICollection<Equipe> Equipe { get; set; }
     }
 }

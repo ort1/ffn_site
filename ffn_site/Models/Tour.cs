@@ -22,8 +22,8 @@ namespace ffn_site.Models
     
         public int id { get; set; }
         public Nullable<int> nbEquipe { get; set; }
-        public int id_Competition { get; set; }
-        public int id_CategorieTour { get; set; }
+        public Nullable<int> id_Competition { get; set; }
+        public Nullable<int> id_CategorieTour { get; set; }
     
         public virtual CategorieTour CategorieTour { get; set; }
         public virtual Competition Competition { get; set; }
