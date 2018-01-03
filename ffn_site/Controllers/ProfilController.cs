@@ -43,7 +43,10 @@ namespace ffn_site.Controllers
                     if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
                     if ((bool)profilFound.estAdmin)
+                    {
+                        
                         return Redirect("/Admin/");
+                    }
                     else
                         return Redirect("/Juge/");
                 }
