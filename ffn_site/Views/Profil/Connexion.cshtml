@@ -37,4 +37,12 @@
             }
         </div>
     </div>
+    <div class="row">
+        @{ 
+            foreach(ffn_site.Models.Profil profil in ViewBag.profiles)
+            {
+                <p>login : @profil.login</p>
+            }
+        }
+    </div>
 </div>

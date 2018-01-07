@@ -7,7 +7,7 @@ using ffn_site.Tools;
 
 namespace ffn_site.Models.Dal
 {
-    public class ProfilDal : IDalProfil
+    public class ProfilDal : Interface.IDalProfil
     {
         private ffn_siteEntities bdd;
 
@@ -50,6 +50,11 @@ namespace ffn_site.Models.Dal
         public bool AddProfil(string login, string password, string email)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Profil> getProfiles()
+        {
+            return bdd.Profil.ToList();
         }
     }
 }

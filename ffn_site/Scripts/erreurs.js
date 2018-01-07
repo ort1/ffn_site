@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
     $(".erreur").mouseover(function (e) {
-        $(".erreur").fadeOut(500);
+        $(".erreur").fadeOut(1000);
     });
 });

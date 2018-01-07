@@ -187,7 +187,9 @@
     <Compile Include="Models\Competition.cs">
       <DependentUpon>ffn_siteModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dal\IDalProfil.cs" />
+    <Compile Include="Models\Dal\Interface\IDalJuge.cs" />
+    <Compile Include="Models\Dal\Interface\IDalProfil.cs" />
+    <Compile Include="Models\Dal\JugeDal.cs" />
     <Compile Include="Models\Dal\ProfilDal.cs" />
     <Compile Include="Models\Epreuve.cs">
       <DependentUpon>ffn_siteModel.tt</DependentUpon>
@@ -267,6 +269,7 @@
     <Content Include="Resources\SQL\v1\truncate.sql" />
     <Content Include="Resources\SQL\v2\constraint.sql" />
     <Content Include="Resources\SQL\v2\drop.sql" />
+    <Content Include="Resources\SQL\v2\insert.sql" />
     <Content Include="Resources\SQL\v2\sql_sqlserverv2.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

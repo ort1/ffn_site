@@ -36,8 +36,24 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Connexion", "Connexion", "Profil")</li>
-                    <li>@Html.ActionLink("Inscription", "Inscription", "Profil")</li>
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        if (ViewBag.role == "admin")
+                        {
+                            <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
+                        }
+                        if (ViewBag.role == "juge")
+                        {
+                            <li>@Html.ActionLink("Espace juge", "Index", "Juge")</li>
+                        }
+                        <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Profil")</li>
+                        <span class="navbar-text">Bonjour @ViewBag.login!</span>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Connexion", "Connexion", "Profil")</li>
+                        <li>@Html.ActionLink("Inscription", "Inscription", "Profil")</li>
+                    }
                 </ul>
             </div>
         </div>
