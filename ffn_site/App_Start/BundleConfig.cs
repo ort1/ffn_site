@@ -24,7 +24,7 @@ namespace ffn_site
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                "~/Scripts/erreurs.js"));
+                "~/Scripts/modals.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

@@ -20,11 +20,7 @@ footer {
     white-space: normal;
 }
 
-.erreur {
-    z-index: 1000000000;
-    position: fixed;
-    right: 0;
-    top: 0;
+.erreur, .notif {
     margin: 20px;
     width: intrinsic; /* Safari/WebKit utilisent un nom non-standard */
     width: -moz-max-content; /* Firefox/Gecko */
@@ -34,4 +30,11 @@ footer {
     -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
     -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
     box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+
+.modals {
+    z-index: 1000000000;
+    position: fixed;
+    right: 0;
+    top: 0;
 }

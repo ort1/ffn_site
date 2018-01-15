@@ -1,0 +1,27 @@
+﻿<div class="modals">
+    @{
+        if (TempData["addNotification"] != null)
+        {
+            <div class="notif alert alert-info">
+                @foreach (string text in (string[])TempData["addNotification"])
+                {
+                    <p>@text</p>
+                }
+            </div>
+        }
+    }
+    @foreach (var item in ViewContext.ViewData.ModelState)
+    {
+        if (item.Value.Errors.Any())
+        {
+            foreach (var error in item.Value.Errors)
+            {
+                <div class="erreur alert alert-danger" role="alert">
+                    <p><b>@item.Key</b></p>
+                    <p>@error.ErrorMessage</p>
+                </div>
+            }
+        }
+    }
+</div>
+
