@@ -187,8 +187,31 @@
     <Compile Include="Models\Competition.cs">
       <DependentUpon>ffn_siteModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dal\CategorieBalletDal.cs" />
+    <Compile Include="Models\Dal\CategorieCompetitionDal.cs" />
+    <Compile Include="Models\Dal\CategorieEpreuveDal.cs" />
+    <Compile Include="Models\Dal\CategorieEvaluationDal.cs" />
+    <Compile Include="Models\Dal\CategorieTourDal.cs" />
+    <Compile Include="Models\Dal\Interface\IDalEquipe.cs" />
+    <Compile Include="Models\Dal\Interface\IDalBallet.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCategorieBallet.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCategorieEpreuve.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCategorieEvaluation.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCategorieTour.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCategorieCompetition.cs" />
+    <Compile Include="Models\Dal\Interface\IDalClub.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCoefficient.cs" />
+    <Compile Include="Models\Dal\Interface\IDalCompetition.cs" />
+    <Compile Include="Models\Dal\Interface\IDalEpreuve.cs" />
+    <Compile Include="Models\Dal\Interface\IDalEvaluation.cs" />
+    <Compile Include="Models\Dal\Interface\IDalEvaluationCompilee.cs" />
     <Compile Include="Models\Dal\Interface\IDalJuge.cs" />
+    <Compile Include="Models\Dal\Interface\IDalJuger.cs" />
+    <Compile Include="Models\Dal\Interface\IDalNageur.cs" />
+    <Compile Include="Models\Dal\Interface\IDalParticiper.cs" />
+    <Compile Include="Models\Dal\Interface\IDalPersonne.cs" />
     <Compile Include="Models\Dal\Interface\IDalProfil.cs" />
+    <Compile Include="Models\Dal\Interface\IDalTour.cs" />
     <Compile Include="Models\Dal\JugeDal.cs" />
     <Compile Include="Models\Dal\ProfilDal.cs" />
     <Compile Include="Models\Epreuve.cs">
@@ -284,7 +307,7 @@
       <DependentUpon>ffn_siteModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\erreurs.js" />
+    <Content Include="Scripts\modals.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -311,6 +334,9 @@
     <Content Include="Views\Profil\Inscription.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Juge\Index.cshtml" />
+    <Content Include="Views\Admin\Competition.cshtml" />
+    <Content Include="Views\Shared\_Modals.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
