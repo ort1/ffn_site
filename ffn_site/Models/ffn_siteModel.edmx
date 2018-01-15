@@ -88,9 +88,9 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titre" Type="varchar(max)" />
           <Property Name="dateDebut" Type="date" />
+          <Property Name="dateFin" Type="date" />
           <Property Name="lieuVille" Type="varchar(max)" />
           <Property Name="lieuCP" Type="varchar(max)" />
-          <Property Name="enCours" Type="bit" />
           <Property Name="id_CategorieCompetition" Type="int" />
         </EntityType>
         <EntityType Name="Epreuve">
@@ -798,10 +798,10 @@
           <Property Name="dateDebut" Type="DateTime" Precision="0" />
           <Property Name="lieuVille" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="lieuCP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="enCours" Type="Boolean" />
           <Property Name="id_CategorieCompetition" Type="Int32" />
           <NavigationProperty Name="CategorieCompetition" Relationship="Self.FK_Competition_id_CategorieCompetition" FromRole="Competition" ToRole="CategorieCompetition" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_id_Competition" FromRole="Competition" ToRole="Tour" />
+          <Property Name="dateFin" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Epreuve">
           <Key>
@@ -1491,12 +1491,12 @@
           <EntitySetMapping Name="Competition">
             <EntityTypeMapping TypeName="ffn_siteModel.Competition">
               <MappingFragment StoreEntitySet="Competition">
+                <ScalarProperty Name="dateFin" ColumnName="dateFin" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="titre" ColumnName="titre" />
                 <ScalarProperty Name="dateDebut" ColumnName="dateDebut" />
                 <ScalarProperty Name="lieuVille" ColumnName="lieuVille" />
                 <ScalarProperty Name="lieuCP" ColumnName="lieuCP" />
-                <ScalarProperty Name="enCours" ColumnName="enCours" />
                 <ScalarProperty Name="id_CategorieCompetition" ColumnName="id_CategorieCompetition" />
               </MappingFragment>
             </EntityTypeMapping>

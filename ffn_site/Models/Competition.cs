@@ -25,8 +25,8 @@ namespace ffn_site.Models
         public Nullable<System.DateTime> dateDebut { get; set; }
         public string lieuVille { get; set; }
         public string lieuCP { get; set; }
-        public Nullable<bool> enCours { get; set; }
         public Nullable<int> id_CategorieCompetition { get; set; }
+        public Nullable<System.DateTime> dateFin { get; set; }
     
         public virtual CategorieCompetition CategorieCompetition { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
