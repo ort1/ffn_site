@@ -1,8 +1,11 @@
-﻿@model ffn_site.Models.Profil
-@{
+﻿@{
     ViewBag.Title = "Administration";
 }
 
 <div class="container">
-    <h1>ICI</h1>
+    <ul>
+        <li>Gestion Utilisateurs</li>
+        <li>@Html.ActionLink("Gestions des compétitions", "Competition", "Admin")</li>
+        <li>Gestion clubs / nageurs</li>
+    </ul>
 </div>
