@@ -47,14 +47,29 @@ namespace ffn_site.Models.Dal
             return profil;
         }
 
-        public bool AddProfil(string login, string password, string email)
+        public int AddProfil(Profil profil)
         {
-            throw new NotImplementedException();
+            profil.password = Helpers.SHA512(profil.password);
+            profil.estAdmin = false;
+            profil.dateCreation = DateTime.Now;
+            bdd.Profil.Add(profil);
+            return UpdateProfil();
         }
 
         public List<Profil> getProfiles()
         {
             return bdd.Profil.ToList();
+        }
+
+        public int UpdateProfil()
+        {
+            int result = bdd.SaveChanges();
+            return result;
+        }
+
+        public int UpdateProfil(Profil profil)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ffn_site.Models.Dal
         public Juge GetJuge(Profil profil)
         {
             Juge juge = bdd.Juge
-                .Where(p => p.id_Profil.Equals(profil.id))
+                .Where(p => p.id_Profil == profil.id)
                 .FirstOrDefault();
             return juge;
         }
@@ -42,7 +42,7 @@ namespace ffn_site.Models.Dal
         public Juge GetJuge(int id)
         {
             Juge juge = bdd.Juge
-                .Where(p => p.id.Equals(id))
+                .Where(p => p.id == id)
                 .FirstOrDefault();
             return juge;
         }
@@ -58,7 +58,7 @@ namespace ffn_site.Models.Dal
         public Personne GetPersonneFromJuge(int id_Personne)
         {
             Personne personne = bdd.Personne
-                .Where(p => p.id.Equals(id_Personne))
+                .Where(p => p.id == id_Personne)
                 .FirstOrDefault();
             return personne;
         }

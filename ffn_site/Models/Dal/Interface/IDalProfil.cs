@@ -9,6 +9,8 @@ namespace ffn_site.Models.Dal.Interface
         Profil getProfil(int id);
         Profil getProfil(string login);
         List<Profil> getProfiles();
-        bool AddProfil(string login, string password, string email);
+        int AddProfil(Profil profil);
+        int UpdateProfil();
+        int UpdateProfil(Profil profil);
     }
 }
