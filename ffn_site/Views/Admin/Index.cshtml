@@ -3,9 +3,21 @@
 }
 
 <div class="container">
-    <ul>
-        <li>Gestion Utilisateurs</li>
-        <li>@Html.ActionLink("Gestions des compétitions", "Competition", "Admin")</li>
-        <li>Gestion clubs / nageurs</li>
-    </ul>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-bookmark"></span> Dashboard administratif
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <a href=@Url.Action("ProfilManager", "Admin") class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br />Utilisateurs</a>
+                    <a href=@Url.Action("Competition", "Admin") class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br />Compétitions</a>
+                    <a href="#" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-folder-open"></span> <br />Clubs</a>
+                    <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br />Nageurs</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
