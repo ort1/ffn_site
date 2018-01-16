@@ -18,22 +18,34 @@ namespace ffn_site.Models.Dal
 
         public int Add(string libelle)
         {
-            throw new NotImplementedException();
+            return Add(new CategorieTour
+            {
+                lbl = libelle
+            });
         }
 
-        public int Add(CategorieTour catComp)
+        public int Add(CategorieTour catTour)
         {
-            throw new NotImplementedException();
+            bdd.CategorieTour.Add(catTour);
+            return bdd.SaveChanges();
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            CategorieTour catTour = Get(id);
+            return Delete(catTour);
         }
 
-        public int Delete(string libelle)
+        public int Delete(string lbl)
         {
-            throw new NotImplementedException();
+            CategorieTour catTour = Get(lbl);
+            return Delete(catTour);
+        }
+
+        public int Delete(CategorieTour catTour)
+        {
+            bdd.CategorieTour.Remove(catTour);
+            return bdd.SaveChanges();
         }
 
         public List<CategorieTour> GetAll()
@@ -41,14 +53,31 @@ namespace ffn_site.Models.Dal
             return bdd.CategorieTour.ToList();
         }
 
-        public CategorieTour GetById(int id)
+        public CategorieTour Get(int id)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieTour.Where(c => c.id == id).FirstOrDefault();
         }
 
-        public CategorieTour GetByLbl(string libelle)
+        public CategorieTour Get(string lbl)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieTour.Where(c => c.lbl == lbl).FirstOrDefault();
+        }
+
+        public CategorieTour Get(CategorieTour catTour)
+        {
+            return bdd.CategorieTour.Where(c => c.lbl.Equals(catTour.lbl) && c.id == catTour.id).FirstOrDefault();
+        }
+
+        public int Update(CategorieTour catTour)
+        {
+            CategorieTour existCatTour = Get(catTour.id);
+            if (existCatTour == null)
+                return -1;
+            else
+            {
+                existCatTour.lbl = catTour.lbl;
+                return bdd.SaveChanges();
+            }
         }
     }
 }

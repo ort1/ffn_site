@@ -17,22 +17,33 @@ namespace ffn_site.Models.Dal
 
         public int Add(string libelle)
         {
-            throw new NotImplementedException();
+            return Add(new CategorieCompetition {
+                lbl = libelle
+            });
         }
 
         public int Add(CategorieCompetition catComp)
         {
-            throw new NotImplementedException();
+            bdd.CategorieCompetition.Add(catComp);
+            return bdd.SaveChanges();
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            CategorieCompetition catComp = Get(id);
+            return Delete(catComp);
         }
 
-        public int Delete(string libelle)
+        public int Delete(string lbl)
         {
-            throw new NotImplementedException();
+            CategorieCompetition catComp = Get(lbl);
+            return Delete(catComp);
+        }
+
+        public int Delete(CategorieCompetition catComp)
+        {
+            bdd.CategorieCompetition.Remove(catComp);
+            return bdd.SaveChanges();
         }
 
         public List<CategorieCompetition> GetAll()
@@ -40,14 +51,31 @@ namespace ffn_site.Models.Dal
             return bdd.CategorieCompetition.ToList();
         }
 
-        public CategorieCompetition GetById(int id)
+        public CategorieCompetition Get(int id)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieCompetition.Where(c => c.id == id).FirstOrDefault();
         }
 
-        public CategorieCompetition GetByLbl(string libelle)
+        public CategorieCompetition Get(string lbl)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieCompetition.Where(c => c.lbl == lbl).FirstOrDefault();
+        }
+
+        public CategorieCompetition Get(CategorieCompetition catComp)
+        {
+            return bdd.CategorieCompetition.Where(c => c.lbl.Equals(catComp.lbl) && c.id == catComp.id).FirstOrDefault();
+        }
+
+        public int Update(CategorieCompetition catComp)
+        {
+            CategorieCompetition existCatComp = Get(catComp.id);
+            if (existCatComp == null)
+                return -1;
+            else
+            {
+                existCatComp.lbl = catComp.lbl;
+                return bdd.SaveChanges();
+            }
         }
     }
 }

@@ -9,11 +9,14 @@ namespace ffn_site.Models.Dal.Interface
     interface IDalCategorieEpreuve
     {
         List<CategorieEpreuve> GetAll();
-        CategorieEpreuve GetById(int id);
-        CategorieEpreuve GetByLbl(string libelle);
+        CategorieEpreuve Get(int id);
+        CategorieEpreuve Get(string libelle);
+        CategorieEpreuve Get(CategorieEpreuve catEpreuve);
         int Add(string libelle);
-        int Add(CategorieEpreuve catComp);
+        int Add(CategorieEpreuve catEpreuve);
         int Delete(int id);
         int Delete(string libelle);
+        int Delete(CategorieEpreuve catEpreuve);
+        int Update(CategorieEpreuve catEpreuve);
     }
 }

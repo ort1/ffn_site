@@ -1,0 +1,43 @@
+﻿@using ffn_site.Models;
+
+<h3>Catégories d'épreuves</h3>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Libellé</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        @using (Html.BeginForm("AddCatEpreuve", "Admin", FormMethod.Post, new { role = "form" }))
+        {
+            <tr>
+                <td>X</td>
+                <td>
+                    @Html.TextBox("lbl", "", new { required = true, @class = "form-control", placeholder = "Libellé" })
+                </td>
+                <td><input type="submit" value="Ajouter" class="btn btn-success"></td>
+            </tr>
+        }
+        @foreach (CategorieEpreuve catEpreuve in ViewBag.catsEpreuve)
+        {
+            using (Html.BeginForm("UpdateCatEpreuve", "Admin", FormMethod.Post, new { role = "form" }))
+            {
+                <tr>
+                    <td>
+                        @Html.Hidden("id", catEpreuve.id, new { required = true })
+                        @catEpreuve.id
+                    </td>
+                    <td>
+                        @Html.TextBox("lbl", catEpreuve.lbl, new { required = true, @class = "form-control" })
+                    </td>
+                    <td>
+                        <input type="submit" value="Modifier" class="btn btn-warning">
+                        @Html.ActionLink("Supprimer", "DeleteCatEpreuve", "Admin", new { id = catEpreuve.id }, new { @class = "btn btn-danger", role = "button" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

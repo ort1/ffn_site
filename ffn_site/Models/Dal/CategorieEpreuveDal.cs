@@ -15,24 +15,37 @@ namespace ffn_site.Models.Dal
         {
             bdd = new ffn_siteEntities();
         }
+
         public int Add(string libelle)
         {
-            throw new NotImplementedException();
+            return Add(new CategorieEpreuve
+            {
+                lbl = libelle
+            });
         }
 
-        public int Add(CategorieEpreuve catComp)
+        public int Add(CategorieEpreuve catEpreuve)
         {
-            throw new NotImplementedException();
+            bdd.CategorieEpreuve.Add(catEpreuve);
+            return bdd.SaveChanges();
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            CategorieEpreuve catEpreuve = Get(id);
+            return Delete(catEpreuve);
         }
 
-        public int Delete(string libelle)
+        public int Delete(string lbl)
         {
-            throw new NotImplementedException();
+            CategorieEpreuve catEpreuve = Get(lbl);
+            return Delete(catEpreuve);
+        }
+
+        public int Delete(CategorieEpreuve catEpreuve)
+        {
+            bdd.CategorieEpreuve.Remove(catEpreuve);
+            return bdd.SaveChanges();
         }
 
         public List<CategorieEpreuve> GetAll()
@@ -40,14 +53,31 @@ namespace ffn_site.Models.Dal
             return bdd.CategorieEpreuve.ToList();
         }
 
-        public CategorieEpreuve GetById(int id)
+        public CategorieEpreuve Get(int id)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieEpreuve.Where(c => c.id == id).FirstOrDefault();
         }
 
-        public CategorieEpreuve GetByLbl(string libelle)
+        public CategorieEpreuve Get(string lbl)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieEpreuve.Where(c => c.lbl == lbl).FirstOrDefault();
+        }
+
+        public CategorieEpreuve Get(CategorieEpreuve catEpreuve)
+        {
+            return bdd.CategorieEpreuve.Where(c => c.lbl.Equals(catEpreuve.lbl) && c.id == catEpreuve.id).FirstOrDefault();
+        }
+
+        public int Update(CategorieEpreuve catEpreuve)
+        {
+            CategorieEpreuve existCatEpreuve = Get(catEpreuve.id);
+            if (existCatEpreuve == null)
+                return -1;
+            else
+            {
+                existCatEpreuve.lbl = catEpreuve.lbl;
+                return bdd.SaveChanges();
+            }
         }
     }
 }

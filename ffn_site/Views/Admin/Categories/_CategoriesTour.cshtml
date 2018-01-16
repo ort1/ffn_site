@@ -1,0 +1,43 @@
+﻿@using ffn_site.Models;
+
+<h3>Catégories de tours</h3>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Libellé</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        @using (Html.BeginForm("AddCatTour", "Admin", FormMethod.Post, new { role = "form" }))
+        {
+            <tr>
+                <td>X</td>
+                <td>
+                    @Html.TextBox("lbl", "", new { required = true, @class = "form-control", placeholder = "Libellé" })
+                </td>
+                <td><input type="submit" value="Ajouter" class="btn btn-success"></td>
+            </tr>
+        }
+        @foreach (CategorieTour catTour in ViewBag.catsTour)
+        {
+            using (Html.BeginForm("UpdateCatTour", "Admin", FormMethod.Post, new { role = "form" }))
+            {
+                <tr>
+                    <td>
+                        @Html.Hidden("id", catTour.id, new { required = true })
+                        @catTour.id
+                    </td>
+                    <td>
+                        @Html.TextBox("lbl", catTour.lbl, new { required = true, @class = "form-control" })
+                    </td>
+                    <td>
+                        <input type="submit" value="Modifier" class="btn btn-warning">
+                        @Html.ActionLink("Supprimer", "DeleteCatTour", "Admin", new { id = catTour.id }, new { @class = "btn btn-danger", role = "button" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

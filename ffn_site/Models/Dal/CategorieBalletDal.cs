@@ -17,22 +17,34 @@ namespace ffn_site.Models.Dal
 
         public int Add(string libelle)
         {
-            throw new NotImplementedException();
+            return Add(new CategorieBallet
+            {
+                lbl = libelle
+            });
         }
 
-        public int Add(CategorieBallet catComp)
+        public int Add(CategorieBallet catBallet)
         {
-            throw new NotImplementedException();
+            bdd.CategorieBallet.Add(catBallet);
+            return bdd.SaveChanges();
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            CategorieBallet catBallet = Get(id);
+            return Delete(catBallet);
         }
 
-        public int Delete(string libelle)
+        public int Delete(string lbl)
         {
-            throw new NotImplementedException();
+            CategorieBallet catBallet = Get(lbl);
+            return Delete(catBallet);
+        }
+
+        public int Delete(CategorieBallet catBallet)
+        {
+            bdd.CategorieBallet.Remove(catBallet);
+            return bdd.SaveChanges();
         }
 
         public List<CategorieBallet> GetAll()
@@ -40,14 +52,31 @@ namespace ffn_site.Models.Dal
             return bdd.CategorieBallet.ToList();
         }
 
-        public CategorieBallet GetById(int id)
+        public CategorieBallet Get(int id)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieBallet.Where(c => c.id == id).FirstOrDefault();
         }
 
-        public CategorieBallet GetByLbl(string libelle)
+        public CategorieBallet Get(string lbl)
         {
-            throw new NotImplementedException();
+            return bdd.CategorieBallet.Where(c => c.lbl == lbl).FirstOrDefault();
+        }
+
+        public CategorieBallet Get(CategorieBallet catBallet)
+        {
+            return bdd.CategorieBallet.Where(c => c.lbl.Equals(catBallet.lbl) && c.id == catBallet.id).FirstOrDefault();
+        }
+
+        public int Update(CategorieBallet catBallet)
+        {
+            CategorieBallet existCatBallet = Get(catBallet.id);
+            if (existCatBallet == null)
+                return -1;
+            else
+            {
+                existCatBallet.lbl = catBallet.lbl;
+                return bdd.SaveChanges();
+            }
         }
     }
 }

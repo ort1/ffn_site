@@ -9,11 +9,14 @@ namespace ffn_site.Models.Dal.Interface
     interface IDalCategorieTour
     {
         List<CategorieTour> GetAll();
-        CategorieTour GetById(int id);
-        CategorieTour GetByLbl(string libelle);
+        CategorieTour Get(int id);
+        CategorieTour Get(string libelle);
+        CategorieTour Get(CategorieTour catTour);
         int Add(string libelle);
-        int Add(CategorieTour catComp);
+        int Add(CategorieTour catTour);
         int Delete(int id);
         int Delete(string libelle);
+        int Delete(CategorieTour catTour);
+        int Update(CategorieTour catTour);
     }
 }

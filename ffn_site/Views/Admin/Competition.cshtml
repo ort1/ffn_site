@@ -7,9 +7,9 @@
     <script>
         $( function() {
             $(".accordion").accordion({
-            active: false,
-            collapsible: true
-        });
+                active: false,
+                collapsible: true
+            });
         } );
     </script>
 }
@@ -17,36 +17,14 @@
 <div class="container">
     <div class="row">
         <h2>Types catégories</h2>
-        <div class="accordion col-lg-8">
-            <h3>Catégories de compétitions</h3>
-            <ul>
-                @foreach (CategorieCompetition catComp in ViewBag.catsComp)
-                {
-                    <li>@catComp.lbl</li>
-                }
-            </ul>
-            <h3>Catégories de tours</h3>
-            <ul>
-                @foreach (CategorieTour catTour in ViewBag.catsTour)
-                {
-                    <li>@catTour.lbl</li>
-                }
-            </ul>
+        <div class="accordion col-lg-10">
+            @Html.Partial("Categories/_CategoriesCompetition")
 
-            <h3>Catégories d'épreuves</h3>
-            <ul>
-                @foreach (CategorieEpreuve catEpreuve in ViewBag.catsEpreuve)
-                {
-                    <li>@catEpreuve.lbl</li>
-                }
-            </ul>
-            <h3>Catégories de ballets</h3>
-            <ul>
-                @foreach (CategorieBallet catBallet in ViewBag.catsBallet)
-                {
-                    <li>@catBallet.lbl</li>
-                }
-            </ul>
+            @Html.Partial("Categories/_CategoriesTour")
+
+            @Html.Partial("Categories/_CategoriesEpreuve")
+
+            @Html.Partial("Categories/_CategoriesBallet")
         </div>
     </div>
 

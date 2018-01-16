@@ -1,0 +1,43 @@
+﻿@using ffn_site.Models;
+
+<h3>Catégories de ballets</h3>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Libellé</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        @using (Html.BeginForm("AddCatBallet", "Admin", FormMethod.Post, new { role = "form" }))
+        {
+            <tr>
+                <td>X</td>
+                <td>
+                    @Html.TextBox("lbl", "", new { required = true, @class = "form-control", placeholder = "Libellé" })
+                </td>
+                <td><input type="submit" value="Ajouter" class="btn btn-success"></td>
+            </tr>
+        }
+        @foreach (CategorieBallet catBallet in ViewBag.catsBallet)
+        {
+            using (Html.BeginForm("UpdateCatBallet", "Admin", FormMethod.Post, new { role = "form" }))
+            {
+                <tr>
+                    <td>
+                        @Html.Hidden("id", catBallet.id, new { required = true })
+                        @catBallet.id
+                    </td>
+                    <td>
+                        @Html.TextBox("lbl", catBallet.lbl, new { required = true, @class = "form-control" })
+                    </td>
+                    <td>
+                        <input type="submit" value="Modifier" class="btn btn-warning">
+                        @Html.ActionLink("Supprimer", "DeleteCatBallet", "Admin", new { id = catBallet.id }, new { @class = "btn btn-danger", role = "button" })
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
