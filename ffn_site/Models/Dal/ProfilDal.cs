@@ -50,7 +50,6 @@ namespace ffn_site.Models.Dal
         public int AddProfil(Profil profil)
         {
             profil.password = Helpers.SHA512(profil.password);
-            profil.estAdmin = false;
             profil.dateCreation = DateTime.Now;
             bdd.Profil.Add(profil);
             return UpdateProfil();

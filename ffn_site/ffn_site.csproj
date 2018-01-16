@@ -337,6 +337,11 @@
     <Content Include="Views\Admin\Competition.cshtml" />
     <Content Include="Views\Shared\_Modals.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Admin\Categories\_CategoriesCompetition.cshtml" />
+    <Content Include="Views\Admin\Categories\_CategoriesTour.cshtml" />
+    <Content Include="Views\Admin\Categories\_CategoriesEpreuve.cshtml" />
+    <Content Include="Views\Admin\Categories\_CategoriesBallet.cshtml" />
+    <Content Include="Views\Admin\ProfilManager.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

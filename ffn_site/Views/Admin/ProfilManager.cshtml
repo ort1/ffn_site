@@ -1,0 +1,108 @@
+﻿@using ffn_site.Models;
+@{
+    ViewBag.Title = "Gestion des profiles";
+}
+
+<div class="container">
+    <div class="row">
+        <h3>Administrateurs</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Login</td>
+                    <td>Mail</td>
+                    <td>Dernière date de connexion</td>
+                    <td>Date de création</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            @foreach (Profil profil in ViewBag.admins)
+            {
+                <tr>
+                    <td>@profil.id</td>
+                    <td>@profil.login</td>
+                    <td>@profil.mail</td>
+                    <td>@profil.dateConnexion</td>
+                    <td>@profil.dateCreation</td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Editer", "EditCompetition", "Admin", new { id = profil.id }, new { @class = "btn btn-warning", role = "button" })
+                            @Html.ActionLink("Supprimer", "DeleteProfil", "Admin", new { id = profil.id }, new { @class = "btn btn-danger", role = "button" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="row">
+        <h3>Juges</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Login</td>
+                    <td>Mail</td>
+                    <td>Dernière date de connexion</td>
+                    <td>Date de création</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            @foreach (Profil profil in ViewBag.juges)
+            {
+                <tr>
+                    <td>@profil.id</td>
+                    <td>@profil.login</td>
+                    <td>@profil.mail</td>
+                    <td>@profil.dateConnexion</td>
+                    <td>@profil.dateCreation</td>
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Editer", "EditCompetition", "Admin", new { id = profil.id }, new { @class = "btn btn-warning", role = "button" })
+                            @Html.ActionLink("Supprimer", "DeleteProfil", "Admin", new { id = profil.id }, new { @class = "btn btn-danger", role = "button" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="row">
+        <h3>En instance de traitement</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Login</td>
+                    <td>Mail</td>
+                    <td>Date de création</td>
+                    <td>Commentaire</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            @foreach (Profil profil in ViewBag.enCours)
+            {
+                <tr>
+                    <td>@profil.id</td>
+                    <td>@profil.login</td>
+                    <td>@profil.mail</td>
+                    <td>@profil.dateCreation</td>
+                    @if (profil.commentaire.Length > 60)
+                    {
+                        string commentaire = profil.commentaire.Substring(0, 60) + "...";
+                        <td>@commentaire</td>
+                    }
+                    else
+                    {
+                        <td>@profil.commentaire</td>
+                    }
+                    <td>
+                        <div class="btn-group">
+                            @Html.ActionLink("Editer", "EditCompetition", "Admin", new { id = profil.id }, new { @class = "btn btn-warning", role = "button" })
+                            @Html.ActionLink("Supprimer", "DeleteProfil", "Admin", new { id = profil.id }, new { @class = "btn btn-danger", role = "button" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

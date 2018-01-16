@@ -1,6 +1,5 @@
 ﻿using ffn_site.Models;
 using ffn_site.Models.Dal;
-using ffn_site.Models.Dal.Interface;
 using System;
 using System.Web;
 using System.Web.Mvc;
@@ -10,10 +9,10 @@ namespace ffn_site.Controllers
 {
     public class ProfilController : Controller
     {
-        private IDalProfil dalProfil = new ProfilDal();
+        private ProfilDal dalProfil = new ProfilDal();
 
         // GET: Profil
-        public ActionResult Connexion()
+        public ActionResult Connexion(string returnUrl = "")
         {
             Profil profil = null;
             if (HttpContext.User.Identity.IsAuthenticated)
@@ -34,31 +33,29 @@ namespace ffn_site.Controllers
 
         // POST: Profil
         [HttpPost]
-        public ActionResult Connexion(string returnUrl = "", Profil profil = null)
+        public ActionResult Connexion(Profil profil = null)
         {
-            if (ModelState.IsValid)
+            var query = HttpUtility.ParseQueryString(this.Request.UrlReferrer.Query);
+            string returnUrl = HttpUtility.UrlDecode((query["ReturnUrl"] == null || "".Equals(query["ReturnUrl"])) ? "" : query["ReturnUrl"]);
+
+            Profil profilFound = null;
+            profilFound = dalProfil.getProfil(profil.login, profil.password);
+            if (profilFound != null)
             {
-                Profil profilFound = null;
-                profilFound = dalProfil.getProfil(profil.login, profil.password);
-                if (profilFound != null)
+                FormsAuthentication.SetAuthCookie(profilFound.login.ToString(), false);
+                profilFound.dateConnexion = DateTime.Now;
+                dalProfil.UpdateProfil();
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    return Redirect(returnUrl);
+                if ((bool)profilFound.estAdmin)
+                    return RedirectToAction("Index", "Admin");
+                else
                 {
-                    ActionResult view = null;
-                    FormsAuthentication.SetAuthCookie(profilFound.login.ToString(), false);
-                    profilFound.dateConnexion = DateTime.Now;
-                    dalProfil.UpdateProfil();
-                    if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        view = Redirect(returnUrl);
-                    if ((bool)profilFound.estAdmin)
-                        view = RedirectToAction("Index", "Admin");
-                    else
-                    {
-                        Juge juge = new JugeDal().GetJuge(profilFound);
-                        view = RedirectToAction("Index", "Juge", new { juge = juge });
-                    }
-                    return view;
+                    Juge juge = new JugeDal().GetJuge(profilFound);
+                    return RedirectToAction("Index", "Juge", new { juge = juge });
                 }
-                ModelState.AddModelError("Profil", "Identifiant et/ou mot de passe incorrect(s).");
             }
+            ModelState.AddModelError("Profil", "Identifiant et/ou mot de passe incorrect(s).");
             return View();
         }
 
@@ -68,15 +65,15 @@ namespace ffn_site.Controllers
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 profil = dalProfil.getProfil(HttpContext.User.Identity.Name);
-                return Connexion("", profil);
+                return Connexion(profil);
             }
             if (profil != null)
             {
-
                 bool validMail = mailValid.Equals(profil.mail);
                 bool validPassword = passwordValid.Equals(profil.password);
                 if (validMail && validPassword)
                 {
+                    profil.commentaire = HttpUtility.HtmlDecode(profil.commentaire);
                     Profil profilExist = dalProfil.getProfil(profil.login);
                     if (profilExist != null)
                         ModelState.AddModelError("Profil", "Identifiant déjà pris.");

@@ -27,6 +27,7 @@ namespace ffn_site.Models
         public Nullable<System.DateTime> dateCreation { get; set; }
         public Nullable<System.DateTime> dateConnexion { get; set; }
         public Nullable<bool> estAdmin { get; set; }
+        public string commentaire { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Juge> Juge { get; set; }

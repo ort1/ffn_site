@@ -189,9 +189,10 @@
           <Property Name="login" Type="varchar(max)" />
           <Property Name="password" Type="varchar(max)" />
           <Property Name="mail" Type="varchar(max)" />
-          <Property Name="dateCreation" Type="date" />
-          <Property Name="dateConnexion" Type="date" />
+          <Property Name="dateCreation" Type="datetime" />
+          <Property Name="dateConnexion" Type="datetime" />
           <Property Name="estAdmin" Type="bit" />
+          <Property Name="commentaire" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Tour">
           <Key>
@@ -921,10 +922,11 @@
           <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="dateCreation" Type="DateTime" Precision="0" />
-          <Property Name="dateConnexion" Type="DateTime" Precision="0" />
+          <Property Name="dateCreation" Type="DateTime" Precision="3" />
+          <Property Name="dateConnexion" Type="DateTime" Precision="3" />
           <Property Name="estAdmin" Type="Boolean" />
           <NavigationProperty Name="Juge" Relationship="Self.FK_Juge_id_Profil" FromRole="Profil" ToRole="Juge" />
+          <Property Name="commentaire" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Tour">
           <Key>
@@ -1586,6 +1588,7 @@
           <EntitySetMapping Name="Profil">
             <EntityTypeMapping TypeName="ffn_siteModel.Profil">
               <MappingFragment StoreEntitySet="Profil">
+                <ScalarProperty Name="commentaire" ColumnName="commentaire" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />

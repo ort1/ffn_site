@@ -52,9 +52,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.TextArea("commentaire", "", new {
+                    required = true,
+                    maxlength = 250,
+                    rows = 4,
+                    @class = "form-control input-lg",
+                    placeholder = "Veuillez renseigner les informations suivantes pour aider l'administrateur à créer votre profile : " +
+                        "Nom, Prénom et Le type de juge auquel vous souhaitez être associé" +
+                        "(Cette information pourra être modifiée pour les prochaines compétitions que vous jugerez).",
+                    tabIndex = "6" })
+                </div>
                 <hr class="colorgraph">
                 <div class="row">
-                    <input type="submit" value="S'inscrire" class="btn btn-primary btn-block btn-lg" tabindex="6">
+                    <input type="submit" value="S'inscrire" class="btn btn-primary btn-block btn-lg" tabindex="7">
                 </div>
             }
         </div>
