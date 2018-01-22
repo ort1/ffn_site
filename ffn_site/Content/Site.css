@@ -56,3 +56,16 @@ a[role="button"] {
     margin-top: 40px;
     text-align: center;
 }
+
+.box {
+    border: 4px dashed #BDBDBD;
+    border-radius: 5px 5px;
+    margin: 10px;
+    padding: 5px;
+    width: 70%;
+}
+
+.box:hover {
+    border: 2px solid #222222;
+    background-color: #f1f1f1;
+}

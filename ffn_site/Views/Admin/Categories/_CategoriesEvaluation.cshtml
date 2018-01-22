@@ -1,6 +1,6 @@
 ﻿@using ffn_site.Models;
 
-<h3>Catégories de compétitions</h3>
+<h3>Catégories d'évaluation</h3>
 <div class="row">
     <table class="table">
         <thead>
@@ -10,7 +10,7 @@
                 <th>Action</th>
             </tr>
         </thead>
-        @using (Html.BeginForm("AddCatCompetition", "Admin", FormMethod.Post, new { role = "form" }))
+        @using (Html.BeginForm("AddCatEvaluation", "Admin", FormMethod.Post, new { role = "form" }))
         {
             <tr>
                 <td>X</td>
@@ -20,21 +20,21 @@
                 <td><input type="submit" value="Ajouter" class="btn btn-success"></td>
             </tr>
         }
-        @foreach (CategorieCompetition catComp in ViewBag.catsComp)
+        @foreach (CategorieEvaluation catEVal in ViewBag.catsEval)
         {
-            using (Html.BeginForm("UpdateCatCompetition", "Admin", FormMethod.Post, new { role = "form" }))
+            using (Html.BeginForm("UpdateCatEvaluation", "Admin", FormMethod.Post, new { role = "form" }))
             {
                 <tr>
                     <td>
-                        @Html.Hidden("id", catComp.id, new { required = true })
-                        @catComp.id
+                        @Html.Hidden("id", catEVal.id, new { required = true })
+                        @catEVal.id
                     </td>
                     <td>
-                        @Html.TextBox("lbl", catComp.lbl, new { required = true, @class = "form-control" })
+                        @Html.TextBox("lbl", catEVal.lbl, new { required = true, @class = "form-control" })
                     </td>
                     <td>
                         <input type="submit" value="Modifier" class="btn btn-warning">
-                        @Html.ActionLink("Supprimer", "DeleteCatCompetition", "Admin", new { id = catComp.id }, new { @class = "btn btn-danger", role = "button" })
+                        @Html.ActionLink("Supprimer", "DeleteCatEvaluation", "Admin", new { id = catEVal.id }, new { @class = "btn btn-danger", role = "button" })
                     </td>
                 </tr>
             }

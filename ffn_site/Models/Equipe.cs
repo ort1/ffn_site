@@ -24,7 +24,6 @@ namespace ffn_site.Models
         }
     
         public int id { get; set; }
-        public Nullable<bool> estForfait { get; set; }
         public Nullable<int> id_Club { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

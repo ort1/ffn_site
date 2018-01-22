@@ -1,4 +1,6 @@
 ﻿@using ffn_site.Models;
+@using ffn_site.Models.Dal;
+
 @{
     ViewBag.Title = "Gestion des profiles";
 }
@@ -27,8 +29,8 @@
                     <td>@profil.dateCreation</td>
                     <td>
                         <div class="btn-group">
-                            @Html.ActionLink("Editer", "EditCompetition", "Admin", new { id = profil.id }, new { @class = "btn btn-warning", role = "button" })
-                            @Html.ActionLink("Supprimer", "DeleteProfil", "Admin", new { id = profil.id }, new { @class = "btn btn-danger", role = "button" })
+                            @Html.ActionLink("Editer", "ProfilEdit", "Profil", new { login = profil.login, adminToken = (ViewBag.token == null) ? "" : ViewBag .token }, new { @class = "btn btn-warning", role = "button" })
+                            @Html.ActionLink("Supprimer", "ProfilDelete", "Admin", new { login = profil.login, adminToken = (ViewBag.token == null) ? "" : ViewBag.token }, new { @class = "btn btn-danger", role = "button" })
                         </div>
                     </td>
                 </tr>
@@ -43,6 +45,7 @@
                     <td>ID</td>
                     <td>Login</td>
                     <td>Mail</td>
+                    <td>Rôle</td>
                     <td>Dernière date de connexion</td>
                     <td>Date de création</td>
                     <td>Actions</td>
@@ -54,12 +57,13 @@
                     <td>@profil.id</td>
                     <td>@profil.login</td>
                     <td>@profil.mail</td>
+                    <td>@( (profil.role.Equals(ProfilDal.ARBITRE)) ? "Arbitre" : "Juge" )</td>
                     <td>@profil.dateConnexion</td>
                     <td>@profil.dateCreation</td>
                     <td>
                         <div class="btn-group">
-                            @Html.ActionLink("Editer", "EditCompetition", "Admin", new { id = profil.id }, new { @class = "btn btn-warning", role = "button" })
-                            @Html.ActionLink("Supprimer", "DeleteProfil", "Admin", new { id = profil.id }, new { @class = "btn btn-danger", role = "button" })
+                            @Html.ActionLink("Editer", "ProfilEdit", "Profil", new { login = profil.login, adminToken = (ViewBag.token == null) ? "" : ViewBag.token }, new { @class = "btn btn-warning", role = "button" })
+                            @Html.ActionLink("Supprimer", "ProfilDelete", "Admin", new { login = profil.login, adminToken = (ViewBag.token == null) ? "" : ViewBag.token }, new { @class = "btn btn-danger", role = "button" })
                         </div>
                     </td>
                 </tr>
@@ -97,8 +101,8 @@
                     }
                     <td>
                         <div class="btn-group">
-                            @Html.ActionLink("Editer", "EditCompetition", "Admin", new { id = profil.id }, new { @class = "btn btn-warning", role = "button" })
-                            @Html.ActionLink("Supprimer", "DeleteProfil", "Admin", new { id = profil.id }, new { @class = "btn btn-danger", role = "button" })
+                            @Html.ActionLink("Editer", "ProfilEdit", "Profil", new { login = profil.login, adminToken = (ViewBag.token == null) ? "" : ViewBag.token }, new { @class = "btn btn-warning", role = "button" })
+                            @Html.ActionLink("Supprimer", "ProfilDelete", "Admin", new { login = profil.login, adminToken = (ViewBag.token == null) ? "" : ViewBag.token }, new { @class = "btn btn-danger", role = "button" })
                         </div>
                     </td>
                 </tr>

@@ -7,9 +7,12 @@ using ffn_site.Tools;
 
 namespace ffn_site.Models.Dal
 {
-    public class ProfilDal : Interface.IDalProfil
+    public class ProfilDal
     {
         private ffn_siteEntities bdd;
+        public static string ADMIN = "AD";
+        public static string ARBITRE = "AR";
+        public static string JUGE = "JU";
 
         public ProfilDal()
         {
@@ -69,6 +72,28 @@ namespace ffn_site.Models.Dal
         public int UpdateProfil(Profil profil)
         {
             throw new NotImplementedException();
+        }
+
+        public List<string> GetAdminsToken()
+        {
+            return
+                (from p in bdd.Profil
+                where ADMIN.Equals(p.role) && p.token != null
+                select p.token).ToList();
+        }
+
+        public int Delete(int id)
+        {
+            Profil profil = getProfil(id);
+            bdd.Profil.Remove(profil);
+            return bdd.SaveChanges();
+        }
+
+        public int Delete(string login)
+        {
+            Profil profil = getProfil(login);
+            bdd.Profil.Remove(profil);
+            return bdd.SaveChanges();
         }
     }
 }

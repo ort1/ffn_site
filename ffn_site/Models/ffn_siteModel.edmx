@@ -106,7 +106,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estForfait" Type="bit" />
           <Property Name="id_Club" Type="int" />
         </EntityType>
         <EntityType Name="Evaluation">
@@ -139,8 +138,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="rang" Type="int" />
-          <Property Name="estArbitre" Type="bit" />
           <Property Name="id_Profil" Type="int" />
           <Property Name="id_Personne" Type="int" />
         </EntityType>
@@ -168,6 +165,7 @@
           </Key>
           <Property Name="id_Equipe" Type="int" Nullable="false" />
           <Property Name="id_Epreuve" Type="int" Nullable="false" />
+          <Property Name="forfait" Type="bit" />
         </EntityType>
         <EntityType Name="Personne">
           <Key>
@@ -191,8 +189,9 @@
           <Property Name="mail" Type="varchar(max)" />
           <Property Name="dateCreation" Type="datetime" />
           <Property Name="dateConnexion" Type="datetime" />
-          <Property Name="estAdmin" Type="bit" />
+          <Property Name="role" Type="nchar" MaxLength="2" />
           <Property Name="commentaire" Type="varchar" MaxLength="250" />
+          <Property Name="token" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Tour">
           <Key>
@@ -822,7 +821,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="estForfait" Type="Boolean" />
           <Property Name="id_Club" Type="Int32" />
           <NavigationProperty Name="Appartenir" Relationship="Self.FK_Appartenir_id_Equipe" FromRole="Equipe" ToRole="Appartenir" />
           <NavigationProperty Name="Club" Relationship="Self.FK_Equipe_id_Club" FromRole="Equipe" ToRole="Club" />
@@ -867,8 +865,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rang" Type="Int32" />
-          <Property Name="estArbitre" Type="Boolean" />
           <Property Name="id_Profil" Type="Int32" />
           <Property Name="id_Personne" Type="Int32" />
           <NavigationProperty Name="Evaluation" Relationship="Self.FK_Evaluation_id_Juge" FromRole="Juge" ToRole="Evaluation" />
@@ -924,9 +920,10 @@
           <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="dateCreation" Type="DateTime" Precision="3" />
           <Property Name="dateConnexion" Type="DateTime" Precision="3" />
-          <Property Name="estAdmin" Type="Boolean" />
           <NavigationProperty Name="Juge" Relationship="Self.FK_Juge_id_Profil" FromRole="Profil" ToRole="Juge" />
           <Property Name="commentaire" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Tour">
           <Key>
@@ -1516,7 +1513,6 @@
             <EntityTypeMapping TypeName="ffn_siteModel.Equipe">
               <MappingFragment StoreEntitySet="Equipe">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="estForfait" ColumnName="estForfait" />
                 <ScalarProperty Name="id_Club" ColumnName="id_Club" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1547,8 +1543,6 @@
             <EntityTypeMapping TypeName="ffn_siteModel.Juge">
               <MappingFragment StoreEntitySet="Juge">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="rang" ColumnName="rang" />
-                <ScalarProperty Name="estArbitre" ColumnName="estArbitre" />
                 <ScalarProperty Name="id_Profil" ColumnName="id_Profil" />
                 <ScalarProperty Name="id_Personne" ColumnName="id_Personne" />
               </MappingFragment>
@@ -1588,6 +1582,8 @@
           <EntitySetMapping Name="Profil">
             <EntityTypeMapping TypeName="ffn_siteModel.Profil">
               <MappingFragment StoreEntitySet="Profil">
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="commentaire" ColumnName="commentaire" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -1595,7 +1591,6 @@
                 <ScalarProperty Name="mail" ColumnName="mail" />
                 <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
                 <ScalarProperty Name="dateConnexion" ColumnName="dateConnexion" />
-                <ScalarProperty Name="estAdmin" ColumnName="estAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

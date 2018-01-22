@@ -1,0 +1,47 @@
+﻿@using ffn_site.Models;
+@{ 
+    ViewBag.title = "Gestion des clubs";
+    List<Club> clubs = ViewBag.clubs;
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Importation du CSV des clubs</h2>
+        @using (Html.BeginForm("ImportCSVClub", "Admin", FormMethod.Post, new { @class = "form-inline", enctype = "multipart/form-data", role = "form" }))
+        {
+            <div class="form-group">
+                <label for="csv">Fichier CSV à importer : </label>
+                <input type="file" id="csv" name="csv" accept=".csv" required="required" />
+                <p class="help-block">Seule l'extension .csv est acceptée.</p>
+            </div>
+            <input class="btn btn-default" type="submit" value="Importer" />
+        }
+    </div>
+    <div class="row">
+        <h2>Clubs</h2>
+        @foreach(Club club in clubs)
+        {
+            <div class="box row col-md-10">
+                <h4>@club.nomClub</h4>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li>ID Fédéral : @club.idFederal</li>
+                        <li>Adresse : @club.adresseSiege, @club.cpSiege, @club.villeSiege</li>
+                        @if (club.siteWeb != null && !"".Equals(club.siteWeb))
+                        {
+                            <li>Site web : <a href="http://@club.siteWeb">@club.siteWeb</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="dirigeant col-md-5">
+                    <ul class="list-unstyled">
+                        <li>Nom Prenom : @club.Personne.nom @club.Personne.prenom</li>
+                        <li>Tel. Fixe : @club.Personne.telFixe</li>
+                        <li>Tel. Portable : @club.Personne.telPortable</li>
+                        <li>Mail : @club.Personne.mail</li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>

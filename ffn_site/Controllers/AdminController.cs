@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ffn_site.Models;
 using ffn_site.Models.Dal;
+using System.IO;
 
 namespace ffn_site.Controllers
 {
@@ -12,29 +13,44 @@ namespace ffn_site.Controllers
     [Authorize]
     public class AdminController : Controller
     {
+
+        private PersonneDal personneDal = new PersonneDal();
+
         // Catégories
         private CategorieCompetitionDal catCompDal = new CategorieCompetitionDal();
         private CategorieTourDal catTourDal = new CategorieTourDal();
         private CategorieEpreuveDal catEpreuveDal = new CategorieEpreuveDal();
         private CategorieBalletDal catBalletDal = new CategorieBalletDal();
+        private CategorieEvaluationDal catEvalDal = new CategorieEvaluationDal();
         
         // Profiles
         private ProfilDal profilDal = new ProfilDal();
 
-        // GET: Admin
+        // Clubs
+        private ClubDal clubDal = new ClubDal();
+
+        // Nageurs
+        private NageurDal nageurDal = new NageurDal();
+
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult CompetitionManager()
         {
             return View();
         }
 
         #region Management des catégories
         // GET
-        public ActionResult Competition()
+        public ActionResult CategorieManager()
         {
             ViewBag.catsComp = catCompDal.GetAll();
             ViewBag.catsTour = catTourDal.GetAll();
             ViewBag.catsEpreuve = catEpreuveDal.GetAll();
             ViewBag.catsBallet = catBalletDal.GetAll();
+            ViewBag.catsEval = catEvalDal.GetAll();
             return View();
         }
 
@@ -44,7 +60,7 @@ namespace ffn_site.Controllers
                 catCompDal.Delete(id);
             else
                 ModelState.AddModelError("Catégorie de compétitions", "Catégorie introuvable.");
-            return RedirectToAction("Competition", "Admin");
+            return RedirectToAction("CategorieManager", "Admin");
         }
 
         public ActionResult DeleteCatTour(int id = -1)
@@ -53,7 +69,7 @@ namespace ffn_site.Controllers
                 catTourDal.Delete(id);
             else
                 ModelState.AddModelError("Catégorie de tours", "Catégorie introuvable.");
-            return RedirectToAction("Competition", "Admin");
+            return RedirectToAction("CategorieManager", "Admin");
         }
 
         public ActionResult DeleteCatEpreuve(int id = -1)
@@ -62,7 +78,7 @@ namespace ffn_site.Controllers
                 catEpreuveDal.Delete(id);
             else
                 ModelState.AddModelError("Catégorie d'épreuves", "Catégorie introuvable.");
-            return RedirectToAction("Competition", "Admin");
+            return RedirectToAction("CategorieManager", "Admin");
         }
 
         public ActionResult DeleteCatBallet(int id = -1)
@@ -71,7 +87,16 @@ namespace ffn_site.Controllers
                 catBalletDal.Delete(id);
             else
                 ModelState.AddModelError("Catégorie de ballets", "Catégorie introuvable.");
-            return RedirectToAction("Competition", "Admin");
+            return RedirectToAction("CategorieManager", "Admin");
+        }
+
+        public ActionResult DeleteCatEvaluation(int id = -1)
+        {
+            if (id != -1)
+                catEvalDal.Delete(id);
+            else
+                ModelState.AddModelError("Catégorie d'évaluation", "Catégorie introuvable.");
+            return RedirectToAction("CategorieManager", "Admin");
         }
 
         // POST
@@ -82,7 +107,7 @@ namespace ffn_site.Controllers
                 catCompDal.Update(catComp);
             else
                 ModelState.AddModelError("Catégorie de compétitions", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -92,7 +117,7 @@ namespace ffn_site.Controllers
                 catCompDal.Add(catComp);
             else
                 ModelState.AddModelError("Catégorie de compétitions", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -102,7 +127,7 @@ namespace ffn_site.Controllers
                 catTourDal.Update(catTour);
             else
                 ModelState.AddModelError("Catégorie de tours", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -112,7 +137,7 @@ namespace ffn_site.Controllers
                 catTourDal.Add(catTour);
             else
                 ModelState.AddModelError("Catégorie de tours", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -122,7 +147,7 @@ namespace ffn_site.Controllers
                 catEpreuveDal.Update(catEpreuve);
             else
                 ModelState.AddModelError("Catégorie d'épreuves", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -132,7 +157,7 @@ namespace ffn_site.Controllers
                 catEpreuveDal.Add(catEpreuve);
             else
                 ModelState.AddModelError("Catégorie d'épreuves", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -142,7 +167,7 @@ namespace ffn_site.Controllers
                 catBalletDal.Update(catBallet);
             else
                 ModelState.AddModelError("Catégorie de ballets", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
         }
 
         [HttpPost]
@@ -152,7 +177,26 @@ namespace ffn_site.Controllers
                 catBalletDal.Add(catBallet);
             else
                 ModelState.AddModelError("Catégorie de ballets", "Catégorie introuvable.");
-            return Redirect("Competition");
+            return Redirect("CategorieManager");
+        }
+
+        public ActionResult UpdateCatEvaluation(CategorieEvaluation catEval)
+        {
+            if (catEval != null)
+                catEvalDal.Update(catEval);
+            else
+                ModelState.AddModelError("Catégorie d'évaluation", "Catégorie introuvable.");
+            return Redirect("CategorieManager");
+        }
+
+        [HttpPost]
+        public ActionResult AddCatEvaluation(CategorieEvaluation catEval)
+        {
+            if (catEval != null)
+                catEvalDal.Add(catEval);
+            else
+                ModelState.AddModelError("Catégorie d'évaluation", "Catégorie introuvable.");
+            return Redirect("CategorieManager");
         }
         #endregion
 
@@ -160,33 +204,186 @@ namespace ffn_site.Controllers
         // GET
         public ActionResult ProfilManager()
         {
-            ViewBag.admins = profilDal.getProfiles().Where(p => p.estAdmin != null && (bool)p.estAdmin).ToList();
-            ViewBag.juges = profilDal.getProfiles().Where(p => p.estAdmin != null && !(bool)p.estAdmin).ToList();
-            ViewBag.enCours = profilDal.getProfiles().Where(p => p.estAdmin == null).ToList();
+            ViewBag.token = profilDal.getProfil(User.Identity.Name).token;
+            ViewBag.admins = profilDal.getProfiles().Where(p => p.role != null && p.role.Equals(ProfilDal.ADMIN)).ToList();
+            ViewBag.juges = profilDal.getProfiles().Where(p => p.role != null && !p.role.Equals(ProfilDal.ADMIN)).ToList();
+            ViewBag.enCours = profilDal.getProfiles().Where(p => p.role == null).ToList();
             return View();
         }
 
-        public ActionResult ProfilEdit()
+        public ActionResult ProfilDelete(string login = "", string adminToken = "")
         {
-            return View();
+            List<string> tokens = profilDal.GetAdminsToken();
+            if (!"".Equals(login) && tokens.Contains(adminToken))
+                profilDal.Delete(login);
+            return RedirectToAction("ProfilManager", "Admin");
         }
+        #endregion
 
-        public ActionResult ProfilEdit(int id = -1)
+        #region management clubs
+        // GET
+        public ActionResult ClubManager()
         {
-            if (id != -1)
-            {
-                ViewBag.profilEdit = profilDal.getProfil(id);
-            }
+            ViewBag.clubs = clubDal.GetAll();
             return View();
         }
 
         // POST
         [HttpPost]
-        public ActionResult ProfilEdit(Profil profil = null)
+        public ActionResult ImportCSVClub()
         {
-            return Redirect("ProfilManager");
+            if (Request.Files["csv"] != null)
+            {
+                HttpPostedFileBase file = Request.Files["csv"];
+                string[] filename = file.FileName.Split('.');
+                if ("csv".Equals(filename.Last()))
+                {
+                    string datetimeNow = DateTime.Now.ToString("ddMMyyyyhhmmss");
+                    string fullPath = string.Format("D:\\ORT_Lyon\\4MS2I\\csv\\{0}_{1}.csv", filename[0], datetimeNow);
+                    if (file.ContentLength > 0)
+                    {
+                        string FileName = file.FileName;
+                        int FileSize = file.ContentLength;
+                        byte[] FileByteArray = new byte[FileSize];
+                        file.InputStream.Read(FileByteArray, 0, FileSize);
+                        file.SaveAs(fullPath);
+                    }
+                    StreamReader csvReader = new StreamReader(fullPath);
+                    int iLine = 0;
+                    while (!csvReader.EndOfStream)
+                    {
+                        var line = csvReader.ReadLine();
+                        iLine++;
+                        var values = line.Split(';');
+                        if (values.Length > 11)
+                        {
+                            ModelState.AddModelError("Club", string.Format("Le fichier CSV est mal formé - Ligne n°{0}.", iLine));
+                            break;
+                        }
+                        Personne dirigeant = new Personne
+                        {
+                            nom = values[6],
+                            prenom = values[7],
+                            telFixe = values[8],
+                            telPortable = values[9],
+                            mail = values[10]
+                        };
+                        Club club = new Club
+                        {
+                            idFederal = values[0],
+                            nomClub = values[1],
+                            adresseSiege = values[2],
+                            cpSiege = values[3],
+                            villeSiege = values[4],
+                            siteWeb = values[5]
+                        };
+                        int dirigeantExiste = personneDal.EntityExist(dirigeant);
+                        int clubExiste = clubDal.EntityExist(club);
+                        if (dirigeantExiste == -1 && clubExiste == -1)
+                        {
+                            personneDal.Add(dirigeant);
+                            club.id_Dirigeant = dirigeant.id;
+                            clubDal.Add(club);
+                        }
+                        else if (dirigeantExiste == -1 && clubExiste != -1)
+                        {
+                            personneDal.Add(dirigeant);
+                            Club leClub = clubDal.Get(clubExiste);
+                            leClub.id_Dirigeant = dirigeant.id;
+                            clubDal.Update(leClub);
+                        }
+                        else if (dirigeantExiste != -1 && clubExiste == -1)
+                        {
+                            club.id_Dirigeant = dirigeantExiste;
+                            clubDal.Add(club);
+                        }
+                    }
+                    csvReader.Close();
+                    System.IO.File.Delete(fullPath);
+                    TempData["addNotification"] = "Le fichier CSV a été importé avec succès.";
+                }
+            }
+            return RedirectToAction("ClubManager", "Admin");
         }
         #endregion
 
+        #region management nageurs
+        // GET
+        public ActionResult NageursManager()
+        {
+            ViewBag.clubs = clubDal.GetAll();
+            return View();
+        }
+
+        // POST
+        [HttpPost]
+        public ActionResult ImportCSVNageurs()
+        {
+            if (Request.Files["csv"] != null)
+            {
+                HttpPostedFileBase file = Request.Files["csv"];
+                string[] filename = file.FileName.Split('.');
+                if ("csv".Equals(filename.Last()))
+                {
+                    string datetimeNow = DateTime.Now.ToString("ddMMyyyyhhmmss");
+                    string fullPath = string.Format("D:\\ORT_Lyon\\4MS2I\\csv\\{0}_{1}.csv", filename[0], datetimeNow);
+                    if (file.ContentLength > 0)
+                    {
+                        string FileName = file.FileName;
+                        int FileSize = file.ContentLength;
+                        byte[] FileByteArray = new byte[FileSize];
+                        file.InputStream.Read(FileByteArray, 0, FileSize);
+                        file.SaveAs(fullPath);
+                    }
+                    StreamReader csvReader = new StreamReader(fullPath);
+                    int iLine = 0;
+                    while (!csvReader.EndOfStream)
+                    {
+                        var line = csvReader.ReadLine();
+                        iLine++;
+                        var values = line.Split(';');
+                        if (values.Length > 7)
+                        {
+                            ModelState.AddModelError("Club", string.Format("Le fichier CSV est mal formé - Ligne n°{0}.", iLine));
+                            break;
+                        }
+                        Personne nageur = new Personne
+                        {
+                            nom = values[1],
+                            prenom = values[2],
+                            dateNaissance = DateTime.Parse(values[3]),
+                            telFixe = values[4],
+                            telPortable = values[5],
+                            mail = values[6]
+                        };
+
+                        int idClubExist = clubDal.EntityExist(new Club { idFederal = values[0] });
+                        int idNageurExist = personneDal.NageurExist(nageur);
+                        if (idClubExist != -1)
+                        {
+                            if (idNageurExist == -1)
+                            {
+                                personneDal.Add(nageur);
+                                Nageur nageurInClub = new Nageur
+                                {
+                                    id_Club = idClubExist,
+                                    id_Personne = nageur.id
+                                };
+                                nageurDal.Add(nageurInClub);
+                            }
+                            else if (nageurDal.Get(idNageurExist, idClubExist) == null)
+                            {
+                                nageurDal.Add(new Nageur { id_Club = idClubExist, id_Personne = idNageurExist });
+                            }
+                        }
+                    }
+                    csvReader.Close();
+                    System.IO.File.Delete(fullPath);
+                    TempData["addNotification"] = "Le fichier CSV a été importé avec succès.";
+                }
+            }
+            return RedirectToAction("NageursManager", "Admin");
+        }
+        #endregion
     }
 }

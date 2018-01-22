@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("FFN", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("FFN Compétitions", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -17,26 +17,30 @@
                 @if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     Profil currentUser = new ProfilDal().getProfil(HttpContext.Current.User.Identity.Name);
-                    if (currentUser.estAdmin != null && (bool)currentUser.estAdmin)
-                    {
-                        <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
-                    }
-                    else
-                    {
-                        Juge juge = new JugeDal().GetJuge(currentUser);
-                        if (juge.estArbitre != null && (bool)juge.estArbitre)
+                    if ( currentUser.role != null ) {
+                        if ( currentUser.role.Equals(ProfilDal.ADMIN) )
                         {
-                            <li>@Html.ActionLink("Compilation des notes", "Compilation", "Juge")</li>
+                            <li>@Html.ActionLink("Administration", "Index", "Admin")</li>
                         }
-                        <li>@Html.ActionLink("Notation", "Notation", "Juge")</li>
+                        else
+                        {
+                            if ( currentUser.role.Equals(ProfilDal.JUGE) )
+                            {
+                                <li>@Html.ActionLink("Notation", "Notation", "Juge")</li>
+                            }
+                            else if ( currentUser.role.Equals(ProfilDal.ARBITRE) )
+                            {
+                                <li>@Html.ActionLink("Compilation des notes", "Compilation", "Juge")</li>
+                            }
+                        }
                     }
-                    <span class="navbar-text">Bonjour @User.Identity.Name!</span>
-                        <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Profil")</li>
+                    <li>@Html.ActionLink("Profile", "ProfilEdit", "Profil", new { login = currentUser.login }, null)</li>
+                    <li>@Html.ActionLink("Déconnexion", "Deconnexion", "Profil")</li>
                 }
                 else
                 {
                     <li>@Html.ActionLink("Connexion", "Connexion", "Profil")</li>
-                        <li>@Html.ActionLink("Inscription", "Inscription", "Profil")</li>
+                    <li>@Html.ActionLink("Inscription", "Inscription", "Profil")</li>
                 }
             </ul>
         </div>

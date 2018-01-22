@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ffn_site.Models.Dal.Interface;
 
 namespace ffn_site.Models.Dal
 {
-    public class CategorieTourDal : IDalCategorieTour
+    public class CategorieTourDal
     {
 
         private ffn_siteEntities bdd;

@@ -23,8 +23,6 @@ namespace ffn_site.Models
         }
     
         public int id { get; set; }
-        public Nullable<int> rang { get; set; }
-        public Nullable<bool> estArbitre { get; set; }
         public Nullable<int> id_Profil { get; set; }
         public Nullable<int> id_Personne { get; set; }
     

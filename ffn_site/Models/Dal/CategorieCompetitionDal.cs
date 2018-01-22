@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ffn_site.Models.Dal.Interface;
 
 namespace ffn_site.Models.Dal
 {
-    public class CategorieCompetitionDal : IDalCategorieCompetition
+    public class CategorieCompetitionDal
     {
         private ffn_siteEntities bdd;
 

@@ -192,27 +192,11 @@
     <Compile Include="Models\Dal\CategorieEpreuveDal.cs" />
     <Compile Include="Models\Dal\CategorieEvaluationDal.cs" />
     <Compile Include="Models\Dal\CategorieTourDal.cs" />
-    <Compile Include="Models\Dal\Interface\IDalEquipe.cs" />
-    <Compile Include="Models\Dal\Interface\IDalBallet.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCategorieBallet.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCategorieEpreuve.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCategorieEvaluation.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCategorieTour.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCategorieCompetition.cs" />
-    <Compile Include="Models\Dal\Interface\IDalClub.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCoefficient.cs" />
-    <Compile Include="Models\Dal\Interface\IDalCompetition.cs" />
-    <Compile Include="Models\Dal\Interface\IDalEpreuve.cs" />
-    <Compile Include="Models\Dal\Interface\IDalEvaluation.cs" />
-    <Compile Include="Models\Dal\Interface\IDalEvaluationCompilee.cs" />
-    <Compile Include="Models\Dal\Interface\IDalJuge.cs" />
-    <Compile Include="Models\Dal\Interface\IDalJuger.cs" />
-    <Compile Include="Models\Dal\Interface\IDalNageur.cs" />
-    <Compile Include="Models\Dal\Interface\IDalParticiper.cs" />
-    <Compile Include="Models\Dal\Interface\IDalPersonne.cs" />
-    <Compile Include="Models\Dal\Interface\IDalProfil.cs" />
-    <Compile Include="Models\Dal\Interface\IDalTour.cs" />
+    <Compile Include="Models\Dal\ClubDal.cs" />
+    <Compile Include="Models\Dal\IDal.cs" />
     <Compile Include="Models\Dal\JugeDal.cs" />
+    <Compile Include="Models\Dal\NageurDal.cs" />
+    <Compile Include="Models\Dal\PersonneDal.cs" />
     <Compile Include="Models\Dal\ProfilDal.cs" />
     <Compile Include="Models\Epreuve.cs">
       <DependentUpon>ffn_siteModel.tt</DependentUpon>
@@ -334,7 +318,7 @@
     <Content Include="Views\Profil\Inscription.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Juge\Index.cshtml" />
-    <Content Include="Views\Admin\Competition.cshtml" />
+    <Content Include="Views\Admin\CompetitionManager.cshtml" />
     <Content Include="Views\Shared\_Modals.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Admin\Categories\_CategoriesCompetition.cshtml" />
@@ -342,6 +326,11 @@
     <Content Include="Views\Admin\Categories\_CategoriesEpreuve.cshtml" />
     <Content Include="Views\Admin\Categories\_CategoriesBallet.cshtml" />
     <Content Include="Views\Admin\ProfilManager.cshtml" />
+    <Content Include="Views\Admin\CategorieManager.cshtml" />
+    <Content Include="Views\Profil\ProfilEdit.cshtml" />
+    <Content Include="Views\Admin\Categories\_CategoriesEvaluation.cshtml" />
+    <Content Include="Views\Admin\ClubManager.cshtml" />
+    <Content Include="Views\Admin\NageursManager.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

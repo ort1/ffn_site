@@ -1,14 +1,15 @@
 ﻿@using ffn_site.Models;
 @{
-    ViewBag.Title = "Gestion de compétition";
+    ViewBag.Title = "Gestion des catégories";
 }
-    
+
 @section scripts {
     <script>
         $( function() {
             $(".accordion").accordion({
                 active: false,
-                collapsible: true
+                collapsible: true,
+                heightStyle: "content"
             });
         } );
     </script>
@@ -25,17 +26,8 @@
             @Html.Partial("Categories/_CategoriesEpreuve")
 
             @Html.Partial("Categories/_CategoriesBallet")
-        </div>
-    </div>
 
-    <div class="row">
-        <h2>Gestion des compétitions</h2>
-        <a href="#">Ajout</a>
-        <ul id="listeCompetitions">
-            <li>comp 1 + infos</li>
-            <li>comp 2 + infos</li>
-            <li>comp 3 + infos</li>
-            <li>comp 4 + infos</li>
-        </ul>
+            @Html.Partial("Categories/_CategoriesEvaluation")
+        </div>
     </div>
 </div>

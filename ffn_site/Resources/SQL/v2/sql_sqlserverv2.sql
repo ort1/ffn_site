@@ -38,9 +38,9 @@ CREATE TABLE Competition(
         id                      int IDENTITY(1,1)  NOT NULL ,
         titre                   Varchar (max) ,
         dateDebut               Date ,
+        dateFin                 Date ,
         lieuVille               Varchar (max) ,
         lieuCP                  Varchar (max) ,
-        enCours                 BIT ,
         id_CategorieCompetition Int ,
         PRIMARY KEY (id )
 );
@@ -77,8 +77,6 @@ CREATE TABLE Tour(
 
 CREATE TABLE Juge(
         id          int IDENTITY(1,1)  NOT NULL ,
-        rang        Int ,
-        estArbitre  BIT ,
         id_Profil   Int ,
         id_Personne Int ,
         PRIMARY KEY (id )
@@ -127,9 +125,10 @@ CREATE TABLE Profil(
         login         Varchar (max) ,
         password      Varchar (max) ,
         mail          Varchar (max) ,
-        dateCreation  Date ,
-        dateConnexion Date ,
-        estAdmin      BIT ,
+        dateCreation  DateTime ,
+        dateConnexion DateTime ,
+        role		  nchar(2) ,
+		commentaire   Varchar (250) ,
         PRIMARY KEY (id )
 );
 
@@ -175,7 +174,6 @@ CREATE TABLE CategorieTour(
 
 CREATE TABLE Equipe(
         id         int IDENTITY(1,1)  NOT NULL ,
-        estForfait BIT ,
         id_Club    Int ,
         PRIMARY KEY (id )
 );
@@ -269,5 +267,6 @@ CREATE TABLE Appartenir(
 CREATE TABLE Participer(
         id_Equipe  Int NOT NULL ,
         id_Epreuve Int NOT NULL ,
+		forfait    BIT,
         PRIMARY KEY (id_Equipe ,id_Epreuve )
 );

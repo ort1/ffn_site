@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ffn_site.Models.Dal.Interface;
 
 namespace ffn_site.Models.Dal
 {
-    public class CategorieEvaluationDal : IDalCategorieEvaluation
+    public class CategorieEvaluationDal : IDal<CategorieEvaluation>
     {
 
         private ffn_siteEntities bdd;
@@ -15,24 +14,38 @@ namespace ffn_site.Models.Dal
         {
             bdd = new ffn_siteEntities();
         }
-        public int Add(string libelle)
+
+        public int Add(CategorieEvaluation o)
         {
-            throw new NotImplementedException();
+            bdd.CategorieEvaluation.Add(o);
+            return bdd.SaveChanges();
         }
 
-        public int Add(CategorieEvaluation catComp)
+        public int Delete(CategorieEvaluation o)
         {
-            throw new NotImplementedException();
+            bdd.CategorieEvaluation.Remove(o);
+            return bdd.SaveChanges();
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            CategorieEvaluation cat = Get(id);
+            return Delete(cat);
         }
 
-        public int Delete(string libelle)
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            bdd.Dispose();
+        }
+
+        public CategorieEvaluation Get(int id)
+        {
+            return bdd.CategorieEvaluation.Where(c => c.id == id).FirstOrDefault();
+        }
+
+        public CategorieEvaluation Get(CategorieEvaluation o)
+        {
+            return bdd.CategorieEvaluation.Where(c => c.id == o.id).FirstOrDefault();
         }
 
         public List<CategorieEvaluation> GetAll()
@@ -40,14 +53,16 @@ namespace ffn_site.Models.Dal
             return bdd.CategorieEvaluation.ToList();
         }
 
-        public CategorieEvaluation GetById(int id)
+        public int Update(CategorieEvaluation o)
         {
-            throw new NotImplementedException();
-        }
-
-        public CategorieEvaluation GetByLbl(string libelle)
-        {
-            throw new NotImplementedException();
+            CategorieEvaluation existCatEval = Get(o.id);
+            if (existCatEval == null)
+                return -1;
+            else
+            {
+                existCatEval.lbl = existCatEval.lbl;
+                return bdd.SaveChanges();
+            }
         }
     }
 }

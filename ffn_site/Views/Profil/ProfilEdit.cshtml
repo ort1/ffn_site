@@ -1,0 +1,94 @@
+﻿@using ffn_site.Models;
+@using ffn_site.Models.Dal;
+@{
+    ViewBag.Title = "Edition de profile";
+    Profil profil = ViewBag.profil;
+    Personne personne = ViewBag.personne;
+}
+
+@section scripts {
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}
+
+<div class="container">
+    <h1>Edition du profile</h1>
+    <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+        @using (Html.BeginForm("ProfilEdit", "Profil", FormMethod.Post, new { role = "form" }))
+        {
+            <div class="row">
+                <h2>Profile</h2>
+                <hr class="colorgraph">
+                <div class="form-group input">
+                    @Html.Hidden("idProfil", profil.id)
+                </div>
+                <div class="form-group input">
+                    @Html.TextBox("login", profil.login, new { @class = "form-control input-sm", placeholder = "Identifiant" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("mailCurrent", profil.mail, new { type = "email", @class = "form-control input-sm" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("mail", "", new { type = "email", @class = "form-control input-sm", placeholder = "Nouvelle adresse mail" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("mailValid", "", new { type = "email", @class = "form-control input-sm", placeholder = "Nouvelle adresse mail (confirmation)" })
+                </div>
+                <div class="form-group">
+                    @Html.Password("password", "", new { @class = "form-control input-sm", placeholder = "Nouveau mot de passe" })
+                </div>
+                <div class="form-group">
+                    @Html.Password("passwordValid", "", new { @class = "form-control input-sm", placeholder = "Nouveau mot de passe (confirmation)" })
+                </div>
+                @if(ViewBag.listRole != null)
+                {
+                    <div class="form-group">
+                        @Html.DropDownList("role", (List< SelectListItem>)ViewBag.listRole, new { @class = "form-control input-sm" })
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.TextArea("commentaire", profil.commentaire, new { maxlength = 250, rows = 4, @class = "form-control input-sm", placeholder = "Commentaire" })
+                </div>
+            </div>
+
+            if (!ProfilDal.ADMIN.Equals(profil.role))
+            {
+                <div class="row">
+                    <h2>Informations personnelles</h2>
+                    <hr class="colorgraph">
+                    <div class="form-group input">
+                        @Html.Hidden("idPersonne", ((personne != null) ? personne.id.ToString() : ""))
+                    </div>
+                    <div class="form-group input">
+                        @Html.TextBox("nom", ((personne != null) ? personne.nom : ""), new { @class = "form-control input-sm", placeholder = "Nom" })
+                    </div>
+                    <div class="form-group input">
+                        @Html.TextBox("prenom", ((personne != null) ? personne.prenom : ""), new { @class = "form-control input-sm", placeholder = "Prenom" })
+                    </div>
+                    <div class="form-group input">
+                        @Html.TextBox("dateNaissance", ((personne != null) ? personne.dateNaissance.Value.ToString("dd/MM/yyyy") : ""), new { @class = "form-control input-sm datepicker", placeholder = "Date de naissance" })
+                    </div>
+                    <div class="form-group input">
+                        @Html.TextBox("mailPersonne", ((personne != null) ? personne.mail : ""), new { @class = "form-control input-sm", placeholder = "Adresse mail" })
+                    </div>
+                    <div class="form-group input">
+                        @Html.TextBox("telFixe", ((personne != null) ? personne.telFixe : ""), new { @class = "form-control input-sm", placeholder = "Téléphone fixe" })
+                    </div>
+                    <div class="form-group input">
+                        @Html.TextBox("telPortable", ((personne != null) ? personne.telPortable : ""), new { @class = "form-control input-sm", placeholder = "Téléphone portable" })
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <input type="submit" value="Editer" class="btn btn-primary btn-lg">
+            </div>
+        }
+    </div>
+</div>

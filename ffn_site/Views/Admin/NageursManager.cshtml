@@ -1,0 +1,67 @@
+﻿@using ffn_site.Models;
+@{
+    ViewBag.title = "Gestion des nageurs";
+    List<Club> clubs = ViewBag.clubs;
+}
+
+@section scripts {
+    <script>
+        $( function() {
+            $(".accordion").accordion({
+                active: false,
+                collapsible: true,
+                heightStyle: "content"
+            });
+        } );
+    </script>
+}
+
+<div class="container">
+    <div class="row">
+        <h2>Importation du CSV des nageurs</h2>
+        @using (Html.BeginForm("ImportCSVNageurs", "Admin", FormMethod.Post, new { @class = "form-inline", enctype = "multipart/form-data", role = "form" }))
+        {
+            <div class="form-group">
+                <label for="csv">Fichier CSV à importer : </label>
+                <input type="file" id="csv" name="csv" accept=".csv" required="required" />
+                <p class="help-block">Seule l'extension .csv est acceptée.</p>
+            </div>
+            <input class="btn btn-default" type="submit" value="Importer" />
+        }
+    </div>
+    <div class="row">
+        <h2>Nageurs</h2>
+        <div class="accordion">
+            @foreach (Club club in clubs)
+            {
+                <h3>@club.nomClub</h3>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Année de naissance</th>
+                                <th>Mail</th>
+                                <th>Tel. Portable</th>
+                                <th>Tel. Fixe</th>
+                            </tr>
+                        </thead>
+                        @foreach (Nageur nageur in club.Nageur.ToList())
+                        {
+                            <tr>
+                                <td>@nageur.Personne.nom</td>
+                                <td>@nageur.Personne.prenom</td>
+                                <td>@nageur.Personne.dateNaissance.Value.ToString("dd/MM/yyyy")</td>
+                                <td>@nageur.Personne.mail</td>
+                                <td>@nageur.Personne.telPortable</td>
+                                <td>@nageur.Personne.telFixe</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

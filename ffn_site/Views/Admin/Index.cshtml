@@ -13,9 +13,10 @@
             <div class="panel-body">
                 <div class="row">
                     <a href=@Url.Action("ProfilManager", "Admin") class="btn btn-success btn-lg" role="button"><span class="glyphicon glyphicon-user"></span> <br />Utilisateurs</a>
-                    <a href=@Url.Action("Competition", "Admin") class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br />Compétitions</a>
-                    <a href="#" class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-folder-open"></span> <br />Clubs</a>
-                    <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br />Nageurs</a>
+                    <a href=@Url.Action("CompetitionManager", "Admin") class="btn btn-danger btn-lg" role="button"><span class="glyphicon glyphicon-list-alt"></span> <br />Compétitions</a>
+                    <a href=@Url.Action("CategorieManager", "Admin") class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-list"></span> <br />Catégories</a>
+                    <a href=@Url.Action("ClubManager", "Admin") class="btn btn-info btn-lg" role="button"><span class="glyphicon glyphicon-folder-open"></span> <br />Clubs</a>
+                    <a href=@Url.Action("NageursManager", "Admin") class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br />Nageurs</a>
                 </div>
             </div>
         </div>
